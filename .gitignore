@@ -1,0 +1,14 @@
+# Godot 4+
+.godot/
+
+# Builds
+build/
+export/
+*.exe
+*.zip
+
+# Local/editor files
+.DS_Store
+Thumbs.db
+*.tmp
+*.log
