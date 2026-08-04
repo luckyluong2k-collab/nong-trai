@@ -1,0 +1,85 @@
+name: Self-host chill farming game
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/self-host-chill-game.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: chill-game-deploy
+  cancel-in-progress: true
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout hosting repository
+        uses: actions/checkout@v4
+
+      - name: Checkout MIT farming game source
+        uses: actions/checkout@v4
+        with:
+          repository: ChanMeng666/otherworld-god-farmer
+          ref: master
+          path: upstream
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+          cache-dependency-path: upstream/package-lock.json
+
+      - name: Install dependencies
+        working-directory: upstream
+        run: npm ci
+
+      - name: Build game for project Pages
+        working-directory: upstream
+        run: npm run build -- --base-href /nong-trai/
+
+      - name: Prepare static website
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf site
+          mkdir -p site
+
+          if [ -d upstream/dist/client/browser ]; then
+            cp -a upstream/dist/client/browser/. site/
+          elif [ -d upstream/dist/client ]; then
+            cp -a upstream/dist/client/. site/
+          else
+            BUILD_INDEX="$(find upstream/dist -type f -name index.html | head -n 1)"
+            if [ -z "$BUILD_INDEX" ]; then
+              echo "Could not locate Angular build output"
+              exit 1
+            fi
+            cp -a "$(dirname "$BUILD_INDEX")"/. site/
+          fi
+
+          touch site/.nojekyll
+          cp upstream/LICENSE site/LICENSE-UPSTREAM.txt
+          cat > site/CREDITS.txt <<'EOF'
+          Nông Trại Đức Lương - bản tự host
+          Based on Otherworld God-Farmer by Chan Meng.
+          Source: https://github.com/ChanMeng666/otherworld-god-farmer
+          License: MIT. See LICENSE-UPSTREAM.txt.
+          EOF
+
+          # Đổi tiêu đề tab trình duyệt, không sửa logic gameplay.
+          sed -i 's/<title>[^<]*<\/title>/<title>Nông Trại Đức Lương - Chế độ Chill<\/title>/' site/index.html || true
+
+      - name: Publish to gh-pages branch
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: ./site
+          force_orphan: true
+          commit_message: Deploy self-hosted chill farming game
