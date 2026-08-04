@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="theme-color" content="#19382c" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <title>Nông Trại Đức Lương — Chế độ Chill v2</title>
+  <style>
+    *{box-sizing:border-box}
+    html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#10271f;color:#fff;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+    body{display:grid;grid-template-rows:52px 1fr}
+    header{display:flex;align-items:center;gap:10px;padding:7px 12px;background:linear-gradient(90deg,#183b2d,#285a3e);border-bottom:2px solid #dfbd68;box-shadow:0 2px 14px #0008;z-index:5}
+    .title{font-weight:800;color:#ffe08a;white-space:nowrap}.sub{font-size:12px;color:#d7eadc;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .actions{margin-left:auto;display:flex;gap:7px}.actions a,.actions button{border:1px solid #e2c878;background:#f4e6b8;color:#382b20;border-radius:7px;padding:7px 10px;font-weight:700;text-decoration:none;cursor:pointer;white-space:nowrap}
+    main{position:relative;min-height:0;background:#0c1e18}
+    iframe{display:block;width:100%;height:100%;border:0;background:#142a20}
+    #loading{position:absolute;inset:0;display:grid;place-items:center;background:radial-gradient(circle,#315a42,#10271f);z-index:3;transition:opacity .35s}
+    #loading.hide{opacity:0;pointer-events:none}.card{text-align:center;background:#183b2dee;border:1px solid #d9bc69;border-radius:14px;padding:22px;max-width:420px;margin:16px;box-shadow:0 14px 40px #0008}.leaf{font-size:44px}.card b{color:#ffe08a}.card p{color:#d8eadf;line-height:1.5;font-size:14px}
+    .fallback{position:absolute;right:12px;bottom:12px;z-index:2;background:#183b2de8;border:1px solid #d9bc69;border-radius:8px;padding:7px 10px;color:#e8f3ec;font-size:12px}
+    @media(max-width:700px){body{grid-template-rows:48px 1fr}.sub{display:none}.title{font-size:14px}.actions a,.actions button{padding:6px 8px;font-size:12px}.credit{display:none}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="title">🌿 NÔNG TRẠI ĐỨC LƯƠNG</div>
+    <div class="sub">Bản chill v2: trồng cây · xây dựng · NPC · câu cá · tự lưu</div>
+    <div class="actions">
+      <button id="full">⛶ Toàn màn hình</button>
+      <a href="https://otherworld-god-farmer.pages.dev/" target="_blank" rel="noopener">↗ Mở game</a>
+      <a class="credit" href="https://github.com/ChanMeng666/otherworld-god-farmer" target="_blank" rel="noopener">MIT</a>
+    </div>
+  </header>
+  <main id="stage">
+    <div id="loading"><div class="card"><div class="leaf">🌾</div><b>Đang mở thế giới nông trại…</b><p>Nếu màn hình không hiện sau vài giây, bấm “Mở game” phía trên.</p></div></div>
+    <iframe id="game" title="Otherworld God-Farmer" src="https://otherworld-god-farmer.pages.dev/?embed=1" allow="fullscreen; clipboard-read; clipboard-write" allowfullscreen></iframe>
+    <div class="fallback">Không thấy game? Bấm <b>↗ Mở game</b>.</div>
+  </main>
+  <script>
+    const frame=document.getElementById('game');
+    const loading=document.getElementById('loading');
+    frame.addEventListener('load',()=>setTimeout(()=>loading.classList.add('hide'),700));
+    setTimeout(()=>loading.classList.add('hide'),7000);
+    document.getElementById('full').addEventListener('click',async()=>{
+      const target=document.getElementById('stage');
+      try{if(!document.fullscreenElement)await target.requestFullscreen();else await document.exitFullscreen()}catch(e){window.open('https://otherworld-god-farmer.pages.dev/','_blank','noopener')}
+    });
+  </script>
+</body>
+</html>
