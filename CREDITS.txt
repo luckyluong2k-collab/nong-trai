@@ -1,0 +1,4 @@
+Nông Trại Đức Lương - bản tự host
+Based on Otherworld God-Farmer by Chan Meng.
+Source: https://github.com/ChanMeng666/otherworld-god-farmer
+License: MIT. See LICENSE-UPSTREAM.txt.
