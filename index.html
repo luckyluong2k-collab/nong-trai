@@ -2,97 +2,48 @@
 <html lang="vi">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no" />
-  <meta name="theme-color" content="#203a32" />
-  <title>Nông Trại Đức Lương</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="theme-color" content="#19382c" />
+  <title>Nông Trại Đức Lương — Chế độ Chill</title>
   <style>
-    :root{--ink:#2f261f;--paper:#f7e7b7;--wood:#6f432d;--gold:#f3c969;--green:#2f6f4e}
     *{box-sizing:border-box}
-    html,body{margin:0;min-height:100%;background:#152a25;color:#fff;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;overflow-x:hidden}
-    body{display:flex;justify-content:center;background:radial-gradient(circle at 20% 10%,#315b49 0 2px,transparent 3px),radial-gradient(circle at 80% 40%,#294d40 0 2px,transparent 3px),#152a25;background-size:28px 28px,34px 34px}
-    .shell{width:min(1100px,100%);padding:12px 12px 24px}.brand{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:2px auto 10px;max-width:960px}
-    .brand h1{font-size:clamp(18px,3vw,28px);margin:0;color:#ffe08a;text-shadow:3px 3px 0 #6d3d2b;letter-spacing:.5px}.brand small{color:#cfe7d5;text-align:right}
-    .frame{position:relative;max-width:960px;margin:auto;border:6px solid #70432c;outline:4px solid #d5a555;background:#000;box-shadow:0 14px 35px #07110e99;image-rendering:pixelated}
-    canvas{display:block;width:100%;height:auto;aspect-ratio:16/9;image-rendering:pixelated;touch-action:none;background:#78bd63}.top-actions{position:absolute;top:8px;right:8px;display:flex;gap:6px;z-index:5}
-    button{font:inherit;cursor:pointer;border:0}.mini{padding:7px 9px;background:#f7e7b7;color:#35291f;border:2px solid #6f432d;box-shadow:2px 2px 0 #311f17;font-size:12px}
-    .controls{max-width:960px;margin:12px auto 0;display:grid;grid-template-columns:1fr auto;gap:10px;align-items:start}.tools{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
-    .tool{min-height:54px;background:#f7e7b7;color:#3a2b20;border:3px solid #8a5b36;box-shadow:3px 3px 0 #3b2418;padding:6px;font-size:clamp(11px,2.3vw,15px)}.tool.active{background:#f3c969;transform:translate(2px,2px);box-shadow:1px 1px 0 #3b2418}
-    .mobile{display:none;grid-template-columns:132px 118px;gap:12px}.dpad{display:grid;grid-template-columns:repeat(3,42px);grid-template-rows:repeat(3,42px);gap:3px}
-    .dpad button,.action-pad button{background:#e6d39b;color:#33271e;border:2px solid #70432c;box-shadow:2px 2px 0 #321f16;touch-action:none}.dpad .up{grid-column:2}.dpad .left{grid-column:1;grid-row:2}.dpad .down{grid-column:2;grid-row:2}.dpad .right{grid-column:3;grid-row:2}
-    .action-pad{display:grid;grid-template-columns:1fr 1fr;gap:6px}.action-pad button{min-height:44px;font-size:12px}.action-pad .wide{grid-column:1/-1}
-    .help{max-width:960px;margin:10px auto 0;padding:10px 12px;background:#203a32;border-left:5px solid #f3c969;color:#dcebdd;font-size:13px;line-height:1.55}.help b{color:#ffe08a}
-    @media(max-width:760px){.brand small{display:none}.controls{grid-template-columns:1fr}.mobile{display:grid;justify-content:center}.help .desktop{display:none}.frame{border-width:4px;outline-width:2px}.shell{padding:8px 6px 18px}}
+    html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#10271f;color:#fff;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+    body{display:grid;grid-template-rows:52px 1fr}
+    header{display:flex;align-items:center;gap:10px;padding:7px 12px;background:linear-gradient(90deg,#183b2d,#285a3e);border-bottom:2px solid #dfbd68;box-shadow:0 2px 14px #0008;z-index:5}
+    .title{font-weight:800;color:#ffe08a;white-space:nowrap}.sub{font-size:12px;color:#d7eadc;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .actions{margin-left:auto;display:flex;gap:7px}.actions a,.actions button{border:1px solid #e2c878;background:#f4e6b8;color:#382b20;border-radius:7px;padding:7px 10px;font-weight:700;text-decoration:none;cursor:pointer;white-space:nowrap}
+    main{position:relative;min-height:0;background:#0c1e18}
+    iframe{display:block;width:100%;height:100%;border:0;background:#142a20}
+    #loading{position:absolute;inset:0;display:grid;place-items:center;background:radial-gradient(circle,#315a42,#10271f);z-index:3;transition:opacity .35s}
+    #loading.hide{opacity:0;pointer-events:none}.card{text-align:center;background:#183b2dee;border:1px solid #d9bc69;border-radius:14px;padding:22px;max-width:420px;margin:16px;box-shadow:0 14px 40px #0008}.leaf{font-size:44px}.card b{color:#ffe08a}.card p{color:#d8eadf;line-height:1.5;font-size:14px}
+    .fallback{position:absolute;right:12px;bottom:12px;z-index:2;background:#183b2de8;border:1px solid #d9bc69;border-radius:8px;padding:7px 10px;color:#e8f3ec;font-size:12px}
+    @media(max-width:700px){body{grid-template-rows:48px 1fr}.sub{display:none}.title{font-size:14px}.actions a,.actions button{padding:6px 8px;font-size:12px}.credit{display:none}}
   </style>
 </head>
 <body>
-  <main class="shell">
-    <header class="brand"><h1>🌾 NÔNG TRẠI ĐỨC LƯƠNG 🎣</h1><small>Bản web thử nghiệm • Tự lưu trên trình duyệt</small></header>
-    <section class="frame">
-      <canvas id="game" width="960" height="540" aria-label="Game nông trại pixel"></canvas>
-      <div class="top-actions"><button class="mini" id="saveBtn">💾 Lưu</button><button class="mini" id="resetBtn">↻ Chơi lại</button></div>
-    </section>
-    <section class="controls">
-      <div class="tools"><button class="tool active" data-tool="hoe">1 · ⛏ Cuốc</button><button class="tool" data-tool="seed">2 · 🌱 Gieo</button><button class="tool" data-tool="water">3 · 💧 Tưới</button><button class="tool" data-tool="rod">4 · 🎣 Câu</button></div>
-      <div class="mobile">
-        <div class="dpad"><button class="up" data-move="up">▲</button><button class="left" data-move="left">◀</button><button class="down" data-move="down">▼</button><button class="right" data-move="right">▶</button></div>
-        <div class="action-pad"><button id="useBtn">DÙNG</button><button id="interactBtn">NÓI/BÁN</button><button class="wide" id="sleepBtn">🌙 NGỦ</button></div>
-      </div>
-    </section>
-    <div class="help"><span class="desktop"><b>Di chuyển:</b> WASD / phím mũi tên · <b>Dùng công cụ:</b> Space · <b>Tương tác/bán:</b> E · <b>Ngủ:</b> N · <b>Lưu/tải:</b> F5/F9</span> <span><b>Mục tiêu:</b> cuốc đất → gieo hạt → tưới → ngủ 3 ngày → thu hoạch; hoặc ra bờ ao câu cá rồi bán tại thùng gỗ.</span></div>
+  <header>
+    <div class="title">🌿 NÔNG TRẠI ĐỨC LƯƠNG</div>
+    <div class="sub">Bản chill: trồng cây · xây dựng · NPC · câu cá · tự lưu</div>
+    <div class="actions">
+      <button id="full">⛶ Toàn màn hình</button>
+      <a href="https://otherworld-god-farmer.pages.dev/" target="_blank" rel="noopener">↗ Mở riêng</a>
+      <a class="credit" href="https://github.com/ChanMeng666/otherworld-god-farmer" target="_blank" rel="noopener">MIT</a>
+    </div>
+  </header>
+  <main id="stage">
+    <div id="loading"><div class="card"><div class="leaf">🌾</div><b>Đang mở thế giới nông trại…</b><p>Bản này ưu tiên chơi thư giãn, có mùa vụ, xây dựng, nhân vật trong làng và câu cá.</p></div></div>
+    <iframe id="game" title="Otherworld God-Farmer" src="https://otherworld-god-farmer.pages.dev/" allow="fullscreen; clipboard-read; clipboard-write" allowfullscreen></iframe>
+    <div class="fallback">Không thấy game? Bấm <b>↗ Mở riêng</b> ở phía trên.</div>
   </main>
-<script>
-(() => {
-  'use strict';
-  const canvas=document.getElementById('game'),ctx=canvas.getContext('2d');ctx.imageSmoothingEnabled=false;
-  const W=960,H=540,TILE=32,FARM={x:80,y:230,cols:10,rows:6},POND={x:650,y:170,w:230,h:230};
-  const tools=['hoe','seed','water','rod'],toolNames={hoe:'Cuốc',seed:'Hạt giống',water:'Bình tưới',rod:'Cần câu'};
-  const colors={grass:'#78bd63',path:'#d5b476',soil:'#986b3f',wet:'#5e5145',water:'#4ba5c4'};const keys=new Set();let last=performance.now();
-  const makePlots=()=>Array.from({length:FARM.rows},()=>Array.from({length:FARM.cols},()=>({soil:false,seed:false,water:false,grow:0})));
-  let state={started:false,day:1,coins:100,seeds:12,crops:0,fish:0,energy:100,player:{x:430,y:350},facing:{x:0,y:1},tool:'hoe',plots:makePlots(),note:'Nhấn ENTER hoặc chạm màn hình để bắt đầu',noteUntil:Infinity};
-  const clamp=(n,a,b)=>Math.max(a,Math.min(b,n)),dist=(a,b)=>Math.hypot(a.x-b.x,a.y-b.y),inside=(p,r,pad=0)=>p.x>=r.x-pad&&p.x<=r.x+r.w+pad&&p.y>=r.y-pad&&p.y<=r.y+r.h+pad;
-  const say=(text,ms=2300)=>{state.note=text;state.noteUntil=performance.now()+ms};
-  const spend=v=>{if(state.energy<v){say('Hết năng lượng — hãy về giường hoặc nhấn N để ngủ');return false}state.energy-=v;return true};
-  function selectTool(name){if(!tools.includes(name))return;state.tool=name;document.querySelectorAll('.tool').forEach(b=>b.classList.toggle('active',b.dataset.tool===name));say('Đã chọn '+toolNames[name],900)}
-  function targetCell(){const p={x:state.player.x+state.facing.x*34,y:state.player.y+state.facing.y*34},cx=Math.floor((p.x-FARM.x)/TILE),cy=Math.floor((p.y-FARM.y)/TILE);return cx>=0&&cy>=0&&cx<FARM.cols&&cy<FARM.rows?{x:cx,y:cy}:null}
-  function useTool(){
-    if(!state.started){startGame();return}if(state.tool==='rod'){fish();return}const c=targetCell();if(!c){say('Hãy đứng sát và quay mặt vào một ô ruộng');return}const p=state.plots[c.y][c.x];
-    if(p.seed&&p.grow>=3){state.crops++;Object.assign(p,{seed:false,water:false,grow:0});say('Thu hoạch được 1 nông sản!');return}
-    if(state.tool==='hoe'){if(p.soil){say('Ô đất này đã được cuốc');return}if(spend(3)){p.soil=true;say('Đã cuốc đất')}}
-    else if(state.tool==='seed'){if(!p.soil)say('Cần cuốc đất trước');else if(p.seed)say('Ô này đã có cây');else if(state.seeds<=0)say('Hết hạt giống — mua thêm từ Bác Tư');else if(spend(1)){state.seeds--;p.seed=true;say('Đã gieo hạt')}}
-    else if(state.tool==='water'){if(!p.seed)say('Chưa có cây để tưới');else if(p.water)say('Cây hôm nay đã được tưới');else if(spend(2)){p.water=true;say('Đã tưới cây')}}
-  }
-  function fish(){if(!inside(state.player,POND,50)){say('Hãy đứng sát bờ ao rồi dùng cần câu');return}if(!spend(4))return;if(Math.random()<.7){const names=['cá rô','cá chép','cá trắm','cá lóc'];state.fish++;say('🎣 Bắt được '+names[Math.floor(Math.random()*names.length)]+'!')}else say('Cá vừa thoát mất...')}
-  function interact(){
-    if(!state.started){startGame();return}
-    if(dist(state.player,{x:306,y:157})<67){const earned=state.crops*45+state.fish*70;if(!earned){say('Thùng bán hàng đang trống');return}state.coins+=earned;state.crops=0;state.fish=0;say('Đã bán hàng, nhận '+earned+' xu!');save(true);return}
-    if(dist(state.player,{x:430,y:150})<70){if(state.coins>=25){state.coins-=25;state.seeds+=5;say('Bác Tư bán cho bạn 5 hạt giống')}else say('Bạn cần 25 xu để mua 5 hạt giống');return}
-    if(dist(state.player,{x:158,y:185})<75){nextDay();return}say('Không có gì để tương tác ở đây')
-  }
-  function nextDay(){state.day++;state.energy=100;state.plots.flat().forEach(p=>{if(p.seed&&p.water)p.grow=Math.min(3,p.grow+1);p.water=false});state.player={x:190,y:190};state.facing={x:0,y:1};say('🌅 Ngày '+state.day+' bắt đầu — cây được tưới đã lớn thêm');save(true)}
-  function save(silent=false){try{localStorage.setItem('nongTraiDucLuongSave',JSON.stringify({...state,note:'',noteUntil:0}));if(!silent)say('Đã lưu game trên trình duyệt')}catch(e){say('Không thể lưu trên trình duyệt này')}}
-  function load(){try{const raw=localStorage.getItem('nongTraiDucLuongSave');if(!raw)return false;const data=JSON.parse(raw);if(!data||!Array.isArray(data.plots))return false;state={...state,...data,started:true,note:'Đã tải bản lưu',noteUntil:performance.now()+1800};selectTool(state.tool||'hoe');return true}catch(e){return false}}
-  function reset(){if(confirm('Xóa bản lưu và chơi lại từ đầu?')){localStorage.removeItem('nongTraiDucLuongSave');location.reload()}}function startGame(){state.started=true;state.noteUntil=performance.now()+2000;state.note='Chào mừng về Nông Trại Đức Lương!'}
-  function update(dt){if(!state.started)return;let dx=0,dy=0;if(keys.has('a')||keys.has('arrowleft'))dx--;if(keys.has('d')||keys.has('arrowright'))dx++;if(keys.has('w')||keys.has('arrowup'))dy--;if(keys.has('s')||keys.has('arrowdown'))dy++;if(!dx&&!dy)return;const len=Math.hypot(dx,dy);dx/=len;dy/=len;state.facing=Math.abs(dx)>Math.abs(dy)?{x:Math.sign(dx),y:0}:{x:0,y:Math.sign(dy)};const np={x:clamp(state.player.x+dx*158*dt,18,W-18),y:clamp(state.player.y+dy*158*dt,76,H-24)},house={x:45,y:55,w:220,h:125};if(!inside(np,POND,-5)&&!inside(np,house,-5))state.player=np}
-  function rect(x,y,w,h,c,stroke=null,lw=1){ctx.fillStyle=c;ctx.fillRect(Math.round(x),Math.round(y),Math.round(w),Math.round(h));if(stroke){ctx.strokeStyle=stroke;ctx.lineWidth=lw;ctx.strokeRect(Math.round(x)+.5,Math.round(y)+.5,Math.round(w)-1,Math.round(h)-1)}}
-  function text(t,x,y,size=16,c='#fff',align='left'){ctx.fillStyle=c;ctx.font=`bold ${size}px ui-monospace,monospace`;ctx.textAlign=align;ctx.textBaseline='alphabetic';ctx.fillText(t,Math.round(x),Math.round(y))}function circle(x,y,r,c){ctx.fillStyle=c;ctx.beginPath();ctx.arc(Math.round(x),Math.round(y),r,0,Math.PI*2);ctx.fill()}
-  function drawWorld(){
-    rect(0,0,W,H,colors.grass);for(let y=82;y<H;y+=28)for(let x=(y/28%2)*14;x<W;x+=28)rect(x,y,3,5,'#69aa58');rect(0,185,620,38,colors.path);rect(360,185,38,355,colors.path);drawHouse();
-    rect(285,135,42,45,'#754531','#4a2b20',3);text('BÁN',306,129,13,'#35251d','center');rect(FARM.x-8,FARM.y-8,FARM.cols*TILE+16,FARM.rows*TILE+16,'#577d46','#375a35',4);
-    for(let y=0;y<FARM.rows;y++)for(let x=0;x<FARM.cols;x++)drawPlot(x,y,state.plots[y][x]);rect(POND.x-7,POND.y-7,POND.w+14,POND.h+14,'#557c54','#36573c',4);rect(POND.x,POND.y,POND.w,POND.h,colors.water);
-    for(let y=POND.y+25;y<POND.y+POND.h;y+=32)rect(POND.x+25,y,POND.w-50,3,'#82d1e3');for(let i=0;i<5;i++)circle(POND.x+40+i*38,POND.y+50+(i%2)*80,4,'#a6e1df');drawNpc(430,150);text('Bác Tư',430,115,13,'#322b25','center');drawPlayer(state.player.x,state.player.y);drawHud();if(!state.started)drawTitle();else if(performance.now()<state.noteUntil)drawNote()
-  }
-  function drawHouse(){rect(45,55,220,125,'#efd39a','#744b32',4);ctx.fillStyle='#b64c43';ctx.beginPath();ctx.moveTo(32,65);ctx.lineTo(155,20);ctx.lineTo(280,65);ctx.closePath();ctx.fill();ctx.strokeStyle='#71352f';ctx.lineWidth=4;ctx.stroke();rect(132,115,52,65,'#815239','#503124',3);rect(66,82,45,38,'#79aac7','#4e6f82',3);rect(205,82,45,38,'#79aac7','#4e6f82',3);text('NHÀ',155,104,14,'#6c3e2c','center')}
-  function drawPlot(x,y,p){const px=FARM.x+x*TILE,py=FARM.y+y*TILE;rect(px+1,py+1,TILE-2,TILE-2,p.water?colors.wet:(p.soil?colors.soil:'#77ad54'),'#5b743e',1);if(!p.seed)return;const cx=px+16,cy=py+19;if(p.grow===0)rect(cx-3,cy-2,6,4,'#e7c45d');else{rect(cx-2,cy-12,4,15,'#356f3e');circle(cx-6,cy-5,4+p.grow,'#57a850');circle(cx+6,cy-5,4+p.grow,'#57a850');if(p.grow>=3)circle(cx,cy-11,6,'#efc94d')}}
-  function drawPlayer(x,y){circle(x,y+16,12,'#0003');rect(x-9,y-4,18,19,'#2875b7','#174d7b',2);rect(x-7,y-19,14,15,'#d89d70','#8e5e42',1);rect(x-8,y-22,16,7,'#403028');rect(x-7,y+15,5,8,'#343744');rect(x+2,y+15,5,8,'#343744');const fx=state.facing.x,fy=state.facing.y;circle(x+fx*5,y-12+fy*3,1.5,'#2c2420')}
-  function drawNpc(x,y){rect(x-9,y-4,18,19,'#704fa2','#49326b',2);rect(x-7,y-19,14,15,'#d7a474');rect(x-8,y-22,16,7,'#d2cdc0');rect(x-7,y+15,5,8,'#343744');rect(x+2,y+15,5,8,'#343744')}
-  function drawHud(){rect(0,0,W,64,'#263740');text(`Ngày ${state.day}   Xu ${state.coins}   Hạt ${state.seeds}   Nông sản ${state.crops}   Cá ${state.fish}`,16,27,17,'#fff');text(`Năng lượng ${state.energy}/100`,932,27,16,'#f5d267','right');const names=['1 Cuốc','2 Hạt','3 Tưới','4 Câu'];names.forEach((n,i)=>{const x=310+i*90;rect(x,480,82,42,'#f0ddb0',tools[i]===state.tool?'#4c392d':'#92734f',tools[i]===state.tool?4:2);text(n,x+41,507,14,'#322a24','center')});text('WASD: đi  •  SPACE: dùng đồ  •  E: tương tác/bán  •  N: ngủ',12,535,13,'#263238')}
-  function drawNote(){rect(205,415,550,50,'#101217e8','#f0d589',3);text(state.note,480,447,17,'#fff','center')}function drawTitle(){rect(0,0,W,H,'#000a');rect(180,105,600,320,'#f2dfaf','#513b2c',6);text('NÔNG TRẠI ĐỨC LƯƠNG',480,170,30,'#5d3827','center');text('🌾  TRỒNG CÂY  •  CÂU CÁ  •  BÁN HÀNG  🎣',480,215,17,'#2f6f4e','center');text('Một bản thử nghiệm pixel lấy bối cảnh làng quê Việt Nam',480,257,15,'#574737','center');rect(310,300,340,62,'#e7b956','#70432c',4);text('NHẤN ENTER / CHẠM ĐỂ CHƠI',480,339,17,'#3b2b20','center');text('Không sử dụng hình ảnh hoặc tài sản của Stardew Valley',480,398,12,'#786452','center')}
-  function loop(now){const dt=Math.min(.033,(now-last)/1000);last=now;update(dt);drawWorld();requestAnimationFrame(loop)}
-  addEventListener('keydown',e=>{const k=e.key.toLowerCase();if(['arrowup','arrowdown','arrowleft','arrowright',' ','f5'].includes(k))e.preventDefault();keys.add(k);if(!state.started&&(k==='enter'||k===' ')){startGame();return}if(k>='1'&&k<='4')selectTool(tools[Number(k)-1]);if(k===' ')useTool();else if(k==='e')interact();else if(k==='n')nextDay();else if(k==='f5')save();else if(k==='f9'){if(load())say('Đã tải bản lưu')}});addEventListener('keyup',e=>keys.delete(e.key.toLowerCase()));canvas.addEventListener('pointerdown',()=>{if(!state.started)startGame()});
-  document.querySelectorAll('.tool').forEach(b=>b.addEventListener('click',()=>selectTool(b.dataset.tool)));document.getElementById('useBtn').addEventListener('click',useTool);document.getElementById('interactBtn').addEventListener('click',interact);document.getElementById('sleepBtn').addEventListener('click',nextDay);document.getElementById('saveBtn').addEventListener('click',()=>save());document.getElementById('resetBtn').addEventListener('click',reset);
-  document.querySelectorAll('[data-move]').forEach(btn=>{const map={up:'arrowup',down:'arrowdown',left:'arrowleft',right:'arrowright'},k=map[btn.dataset.move],on=e=>{e.preventDefault();keys.add(k);if(!state.started)startGame()},off=e=>{e.preventDefault();keys.delete(k)};btn.addEventListener('pointerdown',on);btn.addEventListener('pointerup',off);btn.addEventListener('pointercancel',off);btn.addEventListener('pointerleave',off)});
-  load();requestAnimationFrame(loop);
-})();
-</script>
+  <script>
+    const frame=document.getElementById('game');
+    const loading=document.getElementById('loading');
+    frame.addEventListener('load',()=>setTimeout(()=>loading.classList.add('hide'),500));
+    setTimeout(()=>loading.classList.add('hide'),7000);
+    document.getElementById('full').addEventListener('click',async()=>{
+      const target=document.getElementById('stage');
+      try{if(!document.fullscreenElement)await target.requestFullscreen();else await document.exitFullscreen()}catch(e){window.open(frame.src,'_blank','noopener')}
+    });
+  </script>
 </body>
 </html>
