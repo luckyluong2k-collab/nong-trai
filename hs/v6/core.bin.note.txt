@@ -1,0 +1,1 @@
+core.bin uses the same gzip binary payload as core.gz, but with a neutral extension so GitHub Pages/browser will not apply gzip content-encoding implicitly before JavaScript DecompressionStream.
