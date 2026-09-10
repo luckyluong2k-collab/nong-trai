@@ -1,0 +1,1 @@
+HSH V6 runtime assets. core.gz is kept for compatibility; the public loader now uses core.bin to avoid servers/browsers applying gzip content-encoding twice. materials.html is a standalone real-material identification fallback.
