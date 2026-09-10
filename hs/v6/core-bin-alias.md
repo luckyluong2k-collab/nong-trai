@@ -1,1 +1,0 @@
-This marker exists only to document the neutral-extension binary alias created from the same Git blob as core.gz.
