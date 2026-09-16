@@ -1,552 +1,87 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="theme-color" content="#ffccd5">
-    <title>Gnoul & Minyu - Our Love Journey (Pro VIP)</title>
-
-    <!-- Stylesheet Pro VIP -->
-    <link rel="stylesheet" href="css/style.css">
-    
-    <!-- Firebase SDK (v9 compat mode) -->
-    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#ff5d85" />
+  <title>Gnoul & Minyu ♡</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap');
+    :root{--pink:#ff5d85;--coral:#ff816d;--ink:#442d3a;--cream:#fff9f6;--card:#ffffff;--muted:#9c7784;--line:#f6dfe5;--lav:#8d79e6;--shadow:0 12px 35px rgba(161,55,83,.13)}
+    *{box-sizing:border-box;-webkit-tap-highlight-color:transparent} body{margin:0;background:#ffeef1;color:var(--ink);font-family:'DM Sans',sans-serif;min-height:100vh} button,input{font:inherit} button{border:0;cursor:pointer} .app{max-width:480px;margin:auto;min-height:100vh;background:var(--cream);overflow:hidden;position:relative;padding-bottom:94px}
+    .top{height:210px;padding:22px 20px;color:#fff;position:relative;overflow:hidden;background:radial-gradient(circle at 85% 12%,#ffd6bd88 0 11%,transparent 12%),linear-gradient(135deg,#5b366e,#c54e82 48%,#ff9175)}.top:before,.top:after{content:'♥';position:absolute;color:#fff3;animation:float 6s infinite ease-in-out}.top:before{font-size:84px;right:8px;top:34px}.top:after{font-size:35px;left:45%;top:5px;animation-delay:-3s}.hello{display:flex;justify-content:space-between;align-items:center;position:relative}.hello small{font-size:12px;opacity:.85}.hello strong{display:block;font-size:15px}.avatar{height:42px;width:42px;border-radius:50%;background:#fff4;border:1px solid #fff7;display:grid;place-items:center;font-size:20px}.couple{text-align:center;margin-top:12px;position:relative}.couple h1{font:600 27px 'Playfair Display';margin:0}.couple p{margin:5px 0 0;font-size:12px;opacity:.92}.days{position:absolute;right:19px;bottom:14px;text-align:center}.days b{font-size:31px;line-height:25px;display:block}.days span{font-size:10px;letter-spacing:.6px;text-transform:uppercase}.premium{position:absolute;bottom:16px;left:20px;font-size:9px;font-weight:700;letter-spacing:1px;padding:6px 9px;border:1px solid #fff5;border-radius:10px;background:#fff2}
+    main{padding:0 16px}.quick{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-top:-25px;position:relative}.quick button{height:72px;border-radius:19px;background:#fff;box-shadow:var(--shadow);color:var(--pink);font-weight:700;font-size:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px}.quick i{font-style:normal;font-size:22px}.section-head{display:flex;align-items:end;justify-content:space-between;margin:25px 2px 12px}.section-head h2{font:600 20px 'Playfair Display';margin:0}.section-head button{background:none;color:var(--pink);font-size:12px;font-weight:700;padding:0}
+    .memory{height:157px;border-radius:25px;padding:17px;color:#fff;position:relative;overflow:hidden;background:linear-gradient(145deg,#6e5b85,#bc7895 60%,#ffaf91);box-shadow:var(--shadow)}.memory:after{content:'✦';font-size:148px;color:#fff1;position:absolute;right:-19px;bottom:-69px;transform:rotate(15deg)}.memory .tag{font-size:10px;letter-spacing:1px;text-transform:uppercase;background:#fff3;border-radius:10px;padding:5px 8px;display:inline-block}.memory h3{margin:16px 0 3px;font:600 22px 'Playfair Display';position:relative;z-index:1}.memory p{font-size:12px;margin:0;position:relative;z-index:1}.memory button{position:absolute;bottom:14px;right:14px;height:32px;border-radius:12px;background:#fff;color:#a05a7b;padding:0 11px;font-weight:700;font-size:11px;z-index:2}
+    .widgets{display:grid;grid-template-columns:1fr 1fr;gap:12px}.widget{background:var(--card);border-radius:21px;padding:14px;box-shadow:0 7px 22px rgba(118,62,78,.08);min-height:125px}.widget .label{color:var(--muted);font-size:11px}.weather{font-size:29px;margin:7px 0 0}.weather b{font-size:21px}.mood-row{display:flex;align-items:center;gap:6px;margin-top:12px}.mood-row span{font-size:22px}.mood-row p{font-size:11px;margin:0;font-weight:600}.mood-row small{color:var(--muted);font-size:9px}.lovebar{height:7px;background:#f9e7ec;border-radius:10px;margin-top:12px;overflow:hidden}.lovebar i{display:block;height:100%;width:92%;background:linear-gradient(90deg,var(--pink),#ffa16c);border-radius:inherit}.quote{font:italic 15px 'Playfair Display';line-height:1.35;margin:10px 0 0}.quote small{font:normal 10px 'DM Sans';color:var(--muted);display:block;margin-top:7px}
+    .nav{position:fixed;z-index:10;bottom:0;left:50%;transform:translateX(-50%);width:min(480px,100%);height:78px;padding:9px 17px calc(9px + env(safe-area-inset-bottom));background:#fffc;backdrop-filter:blur(14px);border-top:1px solid #f5e5e8;display:flex;justify-content:space-around}.nav button{background:none;color:#bd9aa5;font-size:10px;font-weight:600;display:flex;flex-direction:column;align-items:center;gap:3px;padding:2px 11px}.nav i{font-size:21px;font-style:normal}.nav .active{color:var(--pink)}
+    .page{display:none;animation:up .35s ease}.page.active{display:block}.page-top{padding:20px 2px 4px;display:flex;align-items:center;justify-content:space-between}.page-top h2{font:600 25px 'Playfair Display';margin:0}.round{height:36px;width:36px;background:#fff;border-radius:50%;box-shadow:0 4px 12px #dba7b433;color:var(--pink);font-size:20px}.chat-list{padding:12px 0 4px;min-height:440px;display:flex;flex-direction:column;gap:11px}.message{max-width:79%;padding:10px 13px;border-radius:17px;font-size:13px;line-height:1.35;position:relative;box-shadow:0 4px 10px #a65c6810}.message.you{align-self:flex-end;background:var(--pink);color:#fff;border-bottom-right-radius:5px}.message.her{align-self:flex-start;background:#fff;border-bottom-left-radius:5px}.message small{display:block;font-size:9px;opacity:.7;text-align:right;margin-top:3px}.chat-img{width:100%;border-radius:11px;display:block;margin-top:4px}.compose{position:sticky;bottom:79px;background:#fff;border:1px solid var(--line);height:51px;border-radius:17px;display:flex;align-items:center;padding:4px 5px 4px 12px;gap:8px;box-shadow:0 7px 20px #c67a8626}.compose input{border:0;outline:0;flex:1;min-width:0}.attach{background:none;color:var(--pink);font-size:19px}.send{height:40px;width:40px;border-radius:13px;background:var(--pink);color:white;font-size:17px}.hidden{display:none}
+    .gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:15px}.photo{aspect-ratio:1;border-radius:19px;overflow:hidden;position:relative;background:linear-gradient(135deg,#ffd0cf,#ffc1ac)}.photo:nth-child(2){background:linear-gradient(135deg,#bbb7ff,#ffb2d1)}.photo:nth-child(3){background:linear-gradient(135deg,#a6dbd2,#fff0b5)}.photo img{width:100%;height:100%;object-fit:cover}.photo span{position:absolute;bottom:8px;left:9px;color:#fff;font-weight:700;text-shadow:0 1px 4px #555;font-size:11px}.upload{border:2px dashed #f1b6c5;background:#fff7f8;display:grid;place-items:center;color:var(--pink);font-size:14px;font-weight:700;text-align:center;padding:10px}.upload b{font-size:26px;display:block}
+    .game-card{background:linear-gradient(140deg,#6855a1,#ef7897);border-radius:25px;color:#fff;padding:19px;min-height:155px;position:relative;overflow:hidden}.game-card:after{content:'🎲';font-size:78px;position:absolute;right:13px;top:20px;transform:rotate(-15deg)}.game-card h3{font:600 23px 'Playfair Display';margin:5px 0}.game-card p{font-size:12px;max-width:58%;margin:0}.game-card button{background:white;color:#8b5a91;border-radius:13px;font-weight:700;font-size:12px;padding:10px 13px;margin-top:14px}.heart-game{background:#fff;border-radius:22px;margin-top:14px;padding:16px;text-align:center;box-shadow:var(--shadow)}.heart-game p{font-size:12px;color:var(--muted);margin:0 0 9px}.heart{font-size:48px;display:inline-block;transition:.15s}.heart.pop{animation:pop .3s ease}.score{font-size:12px;color:var(--pink);font-weight:700;margin-top:5px}
+    .game-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}.game-tile{min-height:108px;padding:13px;border-radius:20px;text-align:left;background:#fff;box-shadow:0 6px 17px #b0596912;color:var(--ink);position:relative;overflow:hidden}.game-tile:nth-child(3n+1){background:#fff1f4}.game-tile:nth-child(3n+2){background:#f2efff}.game-tile:nth-child(3n){background:#fff5e5}.game-tile i{display:block;font-style:normal;font-size:27px;margin-bottom:6px}.game-tile b{font-size:13px;display:block}.game-tile small{font-size:10px;color:var(--muted);line-height:1.2;display:block;margin-top:3px}.play-zone{background:#fff;border-radius:22px;margin-top:14px;padding:16px;box-shadow:var(--shadow);text-align:center}.play-zone h3{font:600 19px 'Playfair Display';margin:0 0 8px}.play-zone p{font-size:13px;margin:0;color:#765965;min-height:37px}.choice-row{display:flex;justify-content:center;gap:9px;margin-top:10px}.choice-row button{width:49px;height:45px;border-radius:14px;background:#fff0f3;font-size:21px}.mini-input{width:100%;border:1px solid var(--line);outline-color:var(--pink);border-radius:12px;padding:10px;margin-top:10px}.mini-action{background:var(--pink);color:white;padding:10px 14px;border-radius:12px;font-weight:700;font-size:12px;margin-top:9px}.badge{display:inline-block;color:var(--pink);font-size:10px;font-weight:700;background:#fff0f3;padding:4px 8px;border-radius:8px;margin-top:8px}
+    .ritual{margin-top:14px;background:#fff;border-radius:23px;padding:15px;box-shadow:var(--shadow);display:flex;gap:12px;align-items:center}.ritual .orb{width:46px;height:46px;border-radius:16px;display:grid;place-items:center;background:linear-gradient(140deg,#ffbd91,#ff6d91);font-size:22px}.ritual b{font-size:13px}.ritual p{font-size:11px;color:var(--muted);margin:4px 0}.calendar-card{background:#fff;border-radius:25px;box-shadow:var(--shadow);padding:15px;margin-top:15px}.cal-title{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}.cal-title b{font:600 19px 'Playfair Display'}.cal-title span{font-size:11px;color:var(--muted)}.week,.dates{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;text-align:center}.week span{font-size:9px;color:var(--muted);padding-bottom:4px}.date{height:42px;border-radius:12px;display:flex;flex-direction:column;justify-content:center;font-size:12px}.date small{font-size:8px;color:#b1939d;margin-top:2px}.date.today{background:linear-gradient(140deg,#ff668d,#ff9677);color:white;font-weight:700;box-shadow:0 6px 13px #ff699450}.date.today small{color:#fff}.date.event{background:#fff0f3;color:var(--pink);font-weight:700}.events{margin-top:16px;display:flex;flex-direction:column;gap:9px}.event{border-left:3px solid var(--pink);background:#fff7f8;border-radius:0 12px 12px 0;padding:10px 11px}.event b{font-size:12px}.event span{font-size:10px;color:var(--muted);display:block;margin-top:2px}.milestone{display:flex;align-items:center;gap:10px;background:linear-gradient(130deg,#382949,#8d5d91);color:#fff;border-radius:20px;padding:14px;margin-top:13px}.milestone i{font-style:normal;font-size:25px}.milestone b{font-size:12px}.milestone p{font-size:10px;margin:3px 0 0;color:#f3ddec}
+    .locket{height:116px;margin-top:14px;border-radius:23px;overflow:hidden;position:relative;color:#fff;background:linear-gradient(135deg,#303342,#777590);box-shadow:var(--shadow);display:flex;align-items:end;padding:14px}.locket:before{content:'LOCKET · JUST FOR US';position:absolute;top:12px;left:14px;font-size:9px;letter-spacing:1px;font-weight:700}.locket:after{content:'♡';position:absolute;right:14px;top:10px;font-size:25px}.locket img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.55}.locket div{position:relative}.locket b{font-size:14px;display:block}.locket span{font-size:10px;opacity:.85}.music-pill{margin:14px 0 0;padding:11px 13px;background:#2e2940;color:#fff;border-radius:17px;display:flex;align-items:center;justify-content:space-between}.music-pill span{font-size:11px}.music-pill button{background:#fff2;color:#fff;border-radius:10px;padding:7px 9px;font-size:12px}.ttt{display:grid;grid-template-columns:repeat(3,62px);gap:6px;justify-content:center;margin:13px auto}.ttt button{height:62px;background:#fff1f4;border-radius:13px;color:var(--pink);font-size:28px;font-weight:700}.ttt button:nth-child(even){background:#f0edff;color:var(--lav)}
+    .food-hero{margin-top:14px;border-radius:25px;min-height:258px;overflow:hidden;position:relative;color:#fff;background:linear-gradient(145deg,#274649,#6e9b8a);padding:20px;text-align:center}.food-hero:before{content:'';position:absolute;width:250px;height:250px;border-radius:50%;background:#d5e6a722;top:-110px;left:-70px}.food-hero h2{font:600 25px 'Playfair Display';margin:4px 0;position:relative}.food-hero p{font-size:12px;margin:0;opacity:.87;position:relative}.corgi{position:relative;margin:22px auto 7px;width:134px;height:74px;animation:bob 1.2s infinite ease-in-out}.corgi.shake{animation:shake .16s infinite}.corgi .body{position:absolute;bottom:2px;left:16px;width:99px;height:48px;background:#e89d55;border-radius:30px 37px 18px 25px;border:3px solid #613c32}.corgi .head{position:absolute;z-index:3;left:0;top:3px;width:63px;height:57px;background:#efad62;border:3px solid #613c32;border-radius:30px 26px 29px 24px}.corgi .ear{position:absolute;top:-13px;width:20px;height:31px;background:#b86642;border:3px solid #613c32;border-radius:18px 5px 15px 5px}.corgi .ear.left{left:4px;transform:rotate(-15deg)}.corgi .ear.right{left:35px;transform:rotate(18deg)}.corgi .eye{position:absolute;z-index:4;top:26px;width:7px;height:9px;background:#382522;border-radius:50%}.corgi .eye.one{left:19px}.corgi .eye.two{left:42px}.corgi .nose{position:absolute;z-index:5;top:37px;left:28px;width:10px;height:8px;background:#382522;border-radius:50%}.corgi .leg{position:absolute;bottom:-7px;width:15px;height:23px;background:#e89d55;border:3px solid #613c32;border-radius:5px 5px 10px 10px}.corgi .leg.one{left:33px}.corgi .leg.two{right:14px}.bag{position:absolute;z-index:7;right:6px;bottom:0;width:39px;height:48px;background:#ffc554;border:3px solid #71442d;border-radius:5px 5px 13px 13px;transform:rotate(8deg);box-shadow:inset 0 8px #ffe796}.bag:before{content:'?';font:bold 25px 'Playfair Display';color:#a96543;position:absolute;left:12px;top:8px}.bag.open{animation:bagopen .5s forwards}.food-btn{position:relative;margin-top:8px;border-radius:15px;background:#fff;color:#315c55;padding:12px 17px;font-weight:700}.food-result{margin-top:14px;background:#fff;border-radius:23px;box-shadow:var(--shadow);overflow:hidden;display:none}.food-result.show{display:block;animation:up .35s ease}.food-info{padding:18px;text-align:center}.food-info .tag{font-size:10px;letter-spacing:.7px;color:#d5765d;font-weight:700}.food-info h3{font:600 27px 'Playfair Display';margin:6px 0}.food-info p{font-size:11px;color:var(--muted);margin:0}.food-actions{display:flex;gap:9px;margin-top:12px}.food-actions button{flex:1;border-radius:12px;padding:10px;background:#fff0ed;color:#c36251;font-weight:700;font-size:11px}.food-actions button:last-child{background:#315c55;color:#fff}@keyframes bob{50%{transform:translateY(-5px)}}@keyframes shake{25%{transform:translateX(-6px) rotate(-4deg)}75%{transform:translateX(6px) rotate(4deg)}}@keyframes bagopen{to{transform:translateY(-45px) rotate(24deg);opacity:0}}
+    .food-hero{margin-top:14px;border-radius:25px;min-height:258px;overflow:hidden;position:relative;color:#fff;background:linear-gradient(145deg,#274649,#6e9b8a);padding:20px;text-align:center}.food-hero:before{content:'';position:absolute;width:250px;height:250px;border-radius:50%;background:#d5e6a722;top:-110px;left:-70px}.food-hero h2{font:600 25px 'Playfair Display';margin:4px 0;position:relative}.food-hero p{font-size:12px;margin:0;opacity:.87;position:relative}.corgi{position:relative;margin:20px auto 8px;width:154px;height:86px;animation:bob 1.2s infinite ease-in-out;image-rendering:pixelated}.corgi.shake{animation:shake .16s infinite}.corgi .body{position:absolute;z-index:2;bottom:14px;left:34px;width:91px;height:48px;background:#e9a052;border:4px solid #593b32;border-radius:0;clip-path:polygon(0 25%,12% 25%,12% 12%,28% 12%,28% 0,75% 0,75% 12%,91% 12%,91% 25%,100% 25%,100% 100%,0 100%)}.corgi .body:before,.corgi .body:after{content:'';position:absolute;bottom:-9px;width:52px;height:48px;background:#e9a052;border:4px solid #593b32;z-index:-1}.corgi .body:before{left:-15px;clip-path:polygon(0 30%,15% 30%,15% 14%,83% 14%,83% 0,100% 0,100% 100%,0 100%)}.corgi .body:after{right:-17px;clip-path:polygon(0 0,17% 0,17% 14%,85% 14%,85% 30%,100% 30%,100% 100%,0 100%)}.corgi .head{position:absolute;z-index:5;left:2px;top:19px;width:47px;height:43px;background:#efad62;border:4px solid #593b32;border-radius:0;clip-path:polygon(0 27%,13% 27%,13% 13%,30% 13%,30% 0,71% 0,71% 13%,88% 13%,88% 27%,100% 27%,100% 100%,0 100%)}.corgi .ear{z-index:4;top:1px;width:20px;height:27px;background:#b56543;border:4px solid #593b32;border-radius:0;clip-path:polygon(0 100%,0 30%,30% 30%,30% 0,100% 0,100% 100%)}.corgi .ear.left{left:5px;transform:none}.corgi .ear.right{left:27px;transform:scaleX(-1)}.corgi .eye{z-index:7;top:37px;width:6px;height:8px;background:#342421;border-radius:0}.corgi .eye.one{left:17px}.corgi .eye.two{left:34px}.corgi .nose{z-index:7;top:48px;left:25px;width:10px;height:7px;background:#342421;border-radius:0}.corgi .leg{z-index:1;bottom:1px;width:18px;height:23px;background:#f7e3c5;border:4px solid #593b32;border-radius:0}.corgi .leg.one{left:48px}.corgi .leg.two{right:23px}.bag{position:absolute;z-index:10;right:1px;bottom:0;width:38px;height:47px;background:#ffc554;border:3px solid #71442d;border-radius:0;transform:rotate(8deg);box-shadow:inset 0 8px #ffe796}.bag:before{content:'?';font:bold 25px 'Playfair Display';color:#a96543;position:absolute;left:11px;top:7px}.bag.open{animation:bagopen .5s forwards}.food-btn{position:relative;margin-top:8px;border-radius:15px;background:#fff;color:#315c55;padding:12px 17px;font-weight:700}.food-result{margin-top:14px;background:#fff;border-radius:23px;box-shadow:var(--shadow);overflow:hidden;display:none}.food-result.show{display:block;animation:up .35s ease}.food-info{padding:18px;text-align:center}.food-info .tag{font-size:10px;letter-spacing:.7px;color:#d5765d;font-weight:700}.food-info h3{font:600 27px 'Playfair Display';margin:6px 0}.food-info p{font-size:11px;color:var(--muted);margin:0}.food-actions{display:flex;gap:9px;margin-top:12px}.food-actions button{flex:1;border-radius:12px;padding:10px;background:#fff0ed;color:#c36251;font-weight:700;font-size:11px}.food-actions button:last-child{background:#315c55;color:#fff}@keyframes bob{50%{transform:translateY(-5px)}}@keyframes shake{25%{transform:translateX(-6px) rotate(-4deg)}75%{transform:translateX(6px) rotate(4deg)}}@keyframes bagopen{to{transform:translateY(-45px) rotate(24deg);opacity:0}}
+    .pet-card{margin-top:14px;background:linear-gradient(140deg,#fff2df,#ffced3);border-radius:25px;padding:15px;box-shadow:var(--shadow);overflow:hidden;position:relative}.pet-card:after{content:'✦';position:absolute;right:10px;top:-18px;color:#fff8;font-size:72px}.pet-head{display:flex;justify-content:space-between;align-items:center;position:relative}.pet-head h3{font:600 21px 'Playfair Display';margin:0}.pet-head p{font-size:10px;margin:3px 0 0;color:#9c6870}.pet-level{font-size:10px;color:#9c4f5f;background:#fff9;padding:6px 8px;border-radius:10px;font-weight:700}.pet-row{display:flex;align-items:center;gap:7px;position:relative}.pet-row .corgi{transform:scale(.72);transform-origin:center;margin:-2px -4px -10px -15px}.pet-stats{flex:1}.pet-stat{display:grid;grid-template-columns:20px 1fr 28px;gap:5px;align-items:center;margin:6px 0;font-size:11px}.pet-stat i{height:7px;background:#fff8;border-radius:9px;overflow:hidden}.pet-stat i b{height:100%;display:block;border-radius:inherit;background:#f09264}.pet-stat:nth-child(2) i b{background:#ff6b8c}.pet-stat:nth-child(3) i b{background:#846ee0}.pet-actions{display:flex;gap:7px;position:relative}.pet-actions button{flex:1;background:#fff9;border-radius:12px;padding:9px 4px;font-size:11px;color:#8b5360;font-weight:700}
+    .sheet{position:fixed;z-index:20;left:50%;bottom:-500px;transform:translateX(-50%);width:min(480px,100%);background:#fff;border-radius:28px 28px 0 0;padding:13px 18px 35px;transition:bottom .35s cubic-bezier(.2,.8,.2,1);box-shadow:0 -15px 50px #70304730}.sheet.show{bottom:0}.handle{width:42px;height:4px;background:#eadde1;border-radius:5px;margin:0 auto 18px}.sheet h3{font:600 22px 'Playfair Display';margin:0 0 13px}.moods{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}.moods button{background:#fff4f6;border-radius:15px;padding:11px 2px;color:var(--ink);font-size:21px}.moods small{display:block;font-size:8px;margin-top:3px}.sheet textarea{width:100%;height:80px;border:1px solid var(--line);border-radius:13px;padding:10px;resize:none;outline-color:var(--pink);margin-top:14px}.primary{width:100%;padding:13px;border-radius:14px;background:var(--pink);color:#fff;font-weight:700;margin-top:10px}
+    @keyframes float{50%{transform:translateY(16px) rotate(12deg)}}@keyframes up{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}@keyframes pop{50%{transform:scale(1.45)}}
+  </style>
 </head>
-<body data-theme="rose-gold">
-
-    <!-- Khung mô phỏng điện thoại cao cấp -->
-    <div class="device-container" data-theme="rose-gold">
-        
-        <!-- Canvas hạt nền bồng bềnh (Hearts, Sakura, Stars) -->
-        <canvas id="hearts-bg-canvas"></canvas>
-
-        <!-- Top Bar mô phỏng Dynamic Island -->
-        <div class="phone-top-bar">
-            <span class="status-time" id="status-clock">21:50</span>
-            
-            <div class="dynamic-island" onclick="window.loveThemes.openThemeModal()" title="Chạm để đổi Theme Pro VIP">
-                <span class="island-dot"></span>
-                <span>Gnoul ❤️ Minyu</span>
-            </div>
-
-            <div class="status-indicators">
-                <!-- Nút đổi Theme Pro VIP -->
-                <div class="theme-btn-quick" onclick="window.loveThemes.openThemeModal()" title="Đổi Theme Giao Diện VIP">
-                    🎨
-                </div>
-                <!-- Nút bật/tắt đĩa than nhạc tình yêu -->
-                <div class="music-toggle-btn" id="music-btn" title="Bật/Tắt Nhạc Lofi Tình Yêu" onclick="window.loveAudio.toggleBGM()">
-                    🎵
-                </div>
-            </div>
-        </div>
-
-        <!-- Header ứng dụng -->
-        <header class="app-header">
-            <div class="app-brand">
-                <h1 class="brand-title">Gnoul & Minyu</h1>
-                <span class="brand-subtitle">Since 04/04/2026 • 17/02 Bính Ngọ 🌕</span>
-            </div>
-            
-            <!-- Nút đổi vai trò (Gnoul ⇄ Minyu) -->
-            <button class="header-role-switch" onclick="window.loveChat.toggleRole()" title="Chạm để chuyển vai trò">
-                <span id="header-user-badge">Gnoul 🤴</span>
-                <span style="font-size: 10px; color: var(--primary);">⇄ Đổi</span>
-            </button>
-        </header>
-
-        <!-- Viewport chính cuộn nội dung -->
-        <main class="app-viewport">
-
-            <!-- ================= TAB 1: TRANG CHỦ & WIDGETS PRO ================= -->
-            <section class="tab-view-container active" id="tab-view-home">
-                
-                <!-- Thẻ Hero đếm ngày yêu -->
-                <div class="couple-hero-card">
-                    <div class="hero-glow-blob"></div>
-
-                    <!-- Avatar đôi lồng trái tim nhịp đập -->
-                    <div class="couple-avatars-wrap">
-                        <div class="avatar-bubble gnoul">
-                            <span class="avatar-emoji">🤴</span>
-                            <span class="avatar-name">Gnoul</span>
-                        </div>
-
-                        <div class="heart-center-pulse" onclick="window.loveAudio.playHeartSound()" title="Chạm để nghe nhịp tim">
-                            ❤️
-                        </div>
-
-                        <div class="avatar-bubble minyu">
-                            <span class="avatar-emoji">👸</span>
-                            <span class="avatar-name">Minyu</span>
-                        </div>
-                    </div>
-
-                    <!-- Số ngày yêu lớn -->
-                    <div class="counter-days-box">
-                        <div class="counter-days-num" id="counter-days">0</div>
-                        <div class="counter-days-label" id="counter-subtitle">Ngày Ở Bên Nhau</div>
-                    </div>
-
-                    <!-- Đồng hồ đếm chi tiết Giờ Phút Giây -->
-                    <div class="counter-live-grid">
-                        <div class="counter-unit">
-                            <span class="unit-val" id="counter-hours">00</span>
-                            <span class="unit-label">GIỜ</span>
-                        </div>
-                        <div class="counter-unit">
-                            <span class="unit-val" id="counter-minutes">00</span>
-                            <span class="unit-label">PHÚT</span>
-                        </div>
-                        <div class="counter-unit">
-                            <span class="unit-val" id="counter-seconds">00</span>
-                            <span class="unit-label">GIÂY</span>
-                        </div>
-                    </div>
-
-                    <!-- Ngày kỷ niệm Dương lịch & Âm lịch -->
-                    <div class="anniversary-date-tag">
-                        🗓️ Ngày yêu: 04/04/2026 (Dương lịch)
-                    </div>
-                    <span class="anniversary-lunar-badge" id="anniversary-lunar-badge">
-                        🌕 Âm lịch: Ngày 17/02 năm Bính Ngọ (Ngựa 🐴)
-                    </span>
-
-                    <div class="love-quote-card" id="love-daily-quote">
-                        "Gnoul ❤️ Minyu: Bên nhau từng giây, yêu nhau từng ngày!"
-                    </div>
-                </div>
-
-                <!-- 1. WIDGET LỊCH ÂM DƯƠNG HÔM NAY (VIETNAMESE LUNAR WIDGET) -->
-                <div id="widget-lunar-today-content"></div>
-
-                <!-- 2. WIDGET D-DAY SỰ KIỆN GẦN NHẤT -->
-                <div id="widget-next-dday-banner" onclick="window.loveApp.switchTab('calendar')"></div>
-
-                <!-- 3. THÚ CƯNG TÌNH YÊU (SUMONE STYLE LOVE PET) -->
-                <div class="widgets-section-title">
-                    <span>🐣 Thú Cưng Tình Yêu (SumOne)</span>
-                    <span style="font-size: 11px; color: var(--primary); cursor: pointer;" onclick="window.lovePet.renamePetPrompt()">✏️ Đổi tên</span>
-                </div>
-                <div class="love-pet-card" id="love-pet-card-content"></div>
-
-                <!-- 4. TIỆN ÍCH LOCKET POLAROID PRO -->
-                <div class="widgets-section-title">
-                    <span>📸 Tiện Ích Locket Polaroid</span>
-                    <span style="font-size: 11px; color: var(--primary); cursor: pointer;" onclick="document.getElementById('locket-file-input').click()">+ Gửi ảnh mới</span>
-                </div>
-
-                <div class="widget-locket-wrap">
-                    <div class="locket-header">
-                        <div class="locket-header-title">
-                            <span>✨ Khoảnh Khắc Mới Nhất</span>
-                        </div>
-                        <div class="locket-actions">
-                            <button class="locket-btn-action" onclick="document.getElementById('locket-file-input').click()">📷 Chụp/Gửi</button>
-                            <button class="locket-btn-action" onclick="window.loveWidgets.openLocketGallery()">🖼️ Album</button>
-                        </div>
-                    </div>
-
-                    <!-- Khung ảnh Locket -->
-                    <div id="widget-locket-content"></div>
-                    <input type="file" id="locket-file-input" accept="image/*" style="display: none;">
-                </div>
-
-                <!-- 5. TIỆN ÍCH DUAL GRID: TÂM TRẠNG & PIN ĐÔI -->
-                <div class="widgets-section-title">
-                    <span>📱 Tiện Ích Điện Thoại</span>
-                </div>
-
-                <div class="widgets-dual-grid">
-                    <!-- Widget Tâm trạng -->
-                    <div class="mini-widget-card" onclick="window.loveWidgets.openMoodSelector()">
-                        <div class="mini-widget-title">
-                            <span>TÂM TRẠNG</span>
-                            <span>✏️</span>
-                        </div>
-                        <div class="mood-status-row">
-                            <div id="widget-gnoul-mood">🤴 Gnoul: 🥰 Hạnh phúc</div>
-                            <div id="widget-minyu-mood">👸 Minyu: 🥺 Nhớ anh</div>
-                        </div>
-                    </div>
-
-                    <!-- Widget Pin -->
-                    <div class="mini-widget-card">
-                        <div class="mini-widget-title">
-                            <span>PIN ĐIỆN THOẠI</span>
-                            <span>🔋</span>
-                        </div>
-                        <div class="mood-status-row">
-                            <div><span style="font-size: 11px; font-weight:700;">🤴 Gnoul:</span> <span id="battery-gnoul" style="font-size: 12px; color: #00c853; font-weight:800;">98% ⚡</span></div>
-                            <div><span style="font-size: 11px; font-weight:700;">👸 Minyu:</span> <span id="battery-minyu" style="font-size: 12px; color: #ff4d6d; font-weight:800;">100% ⚡</span></div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 6. GIẤY GHI CHÚ TÌNH YÊU (STICKY NOTE) -->
-                <div class="sticky-note-card" onclick="window.loveWidgets.editStickyNote()">
-                    <span class="sticky-pin">📌</span>
-                    <p class="sticky-content" id="sticky-note-text">
-                        "Anh/Em nhớ ăn uống đúng giờ và uống thật nhiều nước nha! Thương Minyu/Gnoul nhiều lắm 💖"
-                    </p>
-                    <div class="sticky-author" id="sticky-note-author">— Lời nhắn từ Minyu 💕</div>
-                </div>
-
-                <!-- 7. HỘP THƯ BÍ MẬT & Ổ KHÓA TÌNH YÊU (TIME CAPSULE PREVIEW) -->
-                <div class="widgets-section-title">
-                    <span>🔐 Hộp Thư Tương Lai (Love Lock)</span>
-                    <span style="font-size: 11px; color: var(--primary); cursor: pointer;" onclick="window.loveCapsule.createCapsulePrompt()">+ Niêm phong thư</span>
-                </div>
-                <div id="capsules-cards-container"></div>
-
-                <!-- 8. TIẾN TRÌNH CỘT MỐC TIẾP THEO -->
-                <div class="couple-hero-card" style="margin-top: 14px; text-align: left;">
-                    <div class="widgets-section-title" style="margin: 0 0 10px;">
-                        <span>⏳ Cột Mốc Tiếp Theo</span>
-                        <span id="milestone-days-left" style="font-size: 11px; color: var(--primary);">Đang tính...</span>
-                    </div>
-                    <div style="font-size: 14px; font-weight: 800;" id="next-milestone-name">100 Ngày Yêu</div>
-                    
-                    <div style="background: rgba(0,0,0,0.06); height: 10px; border-radius: 10px; overflow: hidden; margin: 8px 0 4px;">
-                        <div id="milestone-progress" style="background: linear-gradient(90deg, #ff758f, #ff4d6d); height: 100%; width: 50%; border-radius: 10px; transition: width 0.6s ease;"></div>
-                    </div>
-                    <div style="text-align: right; font-size: 10px; color: var(--text-muted);" id="milestone-percentage">50%</div>
-
-                    <div id="milestones-grid" style="margin-top: 10px; display: flex; flex-direction: column; gap: 6px;"></div>
-                </div>
-
-            </section>
-
-
-            <!-- ================= TAB 2: LỊCH ÂM DƯƠNG & D-DAY SỰ KIỆN ================= -->
-            <section class="tab-view-container" id="tab-view-calendar">
-                
-                <!-- Bộ Lịch Song Hành Tháng -->
-                <div class="calendar-container-card">
-                    <div class="calendar-header-nav">
-                        <button class="cal-nav-btn" onclick="window.loveCalendar.prevMonth()">◀</button>
-                        <h3 class="calendar-month-title" id="calendar-month-title">Tháng 9 • 2026</h3>
-                        <button class="cal-nav-btn" onclick="window.loveCalendar.nextMonth()">▶</button>
-                    </div>
-
-                    <div class="calendar-weekdays-row">
-                        <span>T2</span><span>T3</span><span>T4</span><span>T5</span><span>T6</span><span>T7</span><span>CN</span>
-                    </div>
-
-                    <div class="calendar-days-grid" id="calendar-days-grid"></div>
-
-                    <div style="margin-top: 12px; display: flex; justify-content: center; gap: 14px; font-size: 11px; color: var(--text-muted); font-weight: 700;">
-                        <span><strong style="color: var(--text-main);">15</strong>: Dương lịch</span>
-                        <span><strong style="color: #e63946;">5/8</strong>: Âm lịch</span>
-                        <span><span style="display:inline-block; width:6px; height:6px; background:var(--primary); border-radius:50%;"></span>: Có sự kiện</span>
-                    </div>
-                </div>
-
-                <!-- Danh sách đếm ngược D-Day Ngày Lễ & Kỷ Niệm -->
-                <div class="widgets-section-title">
-                    <span>🎉 Đếm Ngược D-Day (Ngày Lễ & Kỷ Niệm)</span>
-                    <span style="font-size: 11px; color: var(--primary); cursor: pointer;" onclick="window.loveCalendar.addCustomEventPrompt()">+ Thêm ngày</span>
-                </div>
-
-                <div class="dday-events-wrap" id="dday-events-list"></div>
-
-            </section>
-
-
-            <!-- ================= TAB 3: TRÒ CHUYỆN & GỬI ẢNH (CHAT) ================= -->
-            <section class="tab-view-container" id="tab-view-chat">
-                <div class="chat-container-layout">
-                    
-                    <div class="chat-role-indicator-bar">
-                        <div class="chat-role-badge">
-                            <span id="chat-current-role-avatar">🤴</span>
-                            <span id="chat-current-role-name">Gnoul (Bạn)</span>
-                        </div>
-                        <button class="chat-switch-btn" onclick="window.loveChat.toggleRole()">
-                            ⇄ Chuyển người gửi
-                        </button>
-                    </div>
-
-                    <div class="chat-messages-box" id="chat-messages-container"></div>
-
-                    <!-- Bảng Sticker cute -->
-                    <div class="chat-stickers-panel" id="chat-stickers-panel">
-                        <div class="stickers-grid">
-                            <button class="sticker-pill-btn" onclick="window.loveChat.sendQuickSticker('💖 Em yêu anh nhiều lắm!')">💖 Em yêu anh nhiều</button>
-                            <button class="sticker-pill-btn" onclick="window.loveChat.sendQuickSticker('🥰 Anh yêu em nhất trên đời!')">🥰 Anh yêu em nhất</button>
-                            <button class="sticker-pill-btn" onclick="window.loveChat.sendQuickSticker('🥺 Nhớ người yêu quá nè!')">🥺 Nhớ người yêu quá</button>
-                            <button class="sticker-pill-btn" onclick="window.loveChat.sendQuickSticker('🧋 Đi uống trà sữa nhé bé ơi!')">🧋 Đi trà sữa nhé</button>
-                            <button class="sticker-pill-btn" onclick="window.loveChat.sendQuickSticker('🫂 Cần một cái ôm thật chặt!')">🫂 Cần một cái ôm</button>
-                            <button class="sticker-pill-btn" onclick="window.loveChat.sendQuickSticker('😤 Đang dỗi rùi đấy nhé!')">😤 Đang dỗi rùi đấy</button>
-                        </div>
-                    </div>
-
-                    <!-- Thanh nhập tin nhắn và đính kèm ảnh -->
-                    <div class="chat-input-bar-wrap">
-                        <button class="chat-btn-media" onclick="document.getElementById('chat-file-input').click()" title="Gửi ảnh">📷</button>
-                        <button class="chat-btn-media" onclick="window.loveChat.toggleStickerPicker()" title="Sticker">🌸</button>
-                        <input type="text" class="chat-input-text" id="chat-input-text" placeholder="Gửi lời nhắn yêu thương..." autocomplete="off">
-                        <button class="chat-btn-send" id="chat-send-btn" title="Gửi">➤</button>
-                        <input type="file" id="chat-file-input" accept="image/*" style="display: none;">
-                    </div>
-                </div>
-            </section>
-
-
-            <!-- ================= TAB 4: TRÒ CHƠI CẶP ĐÔI (GAMES) ================= -->
-            <section class="tab-view-container" id="tab-view-games">
-                
-                <div class="game-sub-tabs">
-                    <button class="game-sub-tab active" data-subgame="tictactoe" onclick="window.loveGames.switchSubGame('tictactoe')">
-                        ❌⭕ Cờ Caro
-                    </button>
-                    <button class="game-sub-tab" data-subgame="wheel" onclick="window.loveGames.switchSubGame('wheel')">
-                        🎡 Vòng Quay
-                    </button>
-                    <button class="game-sub-tab" data-subgame="quiz" onclick="window.loveGames.switchSubGame('quiz')">
-                        ❓ Thấu Hiểu
-                    </button>
-                </div>
-
-                <!-- Game 1: Cờ Caro Tình Yêu (Tic-Tac-Toe) -->
-                <div class="subgame-panel active" id="game-panel-tictactoe">
-                    <div class="ttt-score-board">
-                        <div class="ttt-score-item gnoul">
-                            <div>🤴 Gnoul (💙)</div>
-                            <div class="score-num" id="score-gnoul">0</div>
-                        </div>
-                        <div style="font-size: 20px;">VS</div>
-                        <div class="ttt-score-item minyu">
-                            <div>👸 Minyu (💖)</div>
-                            <div class="score-num" id="score-minyu">0</div>
-                        </div>
-                    </div>
-
-                    <div class="ttt-turn-alert" id="ttt-turn-text">Lượt đi của: <strong>Gnoul (💙)</strong></div>
-                    <div class="ttt-grid-box" id="tictactoe-board"></div>
-                    <button class="ttt-btn-reset" onclick="window.loveGames.resetTicTacToe()">Ván Mới 🔄</button>
-                </div>
-
-                <!-- Game 2: Vòng Quay Hẹn Hò -->
-                <div class="subgame-panel" id="game-panel-wheel">
-                    <div class="wheel-container-card">
-                        <div class="wheel-pointer">🔻</div>
-                        <canvas id="wheel-canvas" width="280" height="280"></canvas>
-                        <button class="wheel-btn-spin" onclick="window.loveGames.spinWheel()">QUAY NGAY 🎡</button>
-                    </div>
-                </div>
-
-                <!-- Game 3: Trắc Nghiệm Thấu Hiểu -->
-                <div class="subgame-panel" id="game-panel-quiz">
-                    <div class="quiz-card-wrap" id="quiz-card-container"></div>
-                </div>
-
-            </section>
-
-
-            <!-- ================= TAB 5: CÀI ĐẶT & KỶ NIỆM ================= -->
-            <section class="tab-view-container" id="tab-view-settings">
-                
-                <!-- Dòng thời gian kỷ niệm -->
-                <div class="timeline-section-header">
-                    <h3 style="font-size: 16px; font-weight: 800; color: var(--primary);">📖 Nhật Ký Kỷ Niệm Đôi</h3>
-                    <button class="btn-add-memory" onclick="window.loveApp.addMemoryPrompt()">+ Thêm</button>
-                </div>
-                <div class="timeline-list" id="memory-timeline-list" style="margin-bottom: 20px;"></div>
-
-                <!-- Bộ Theme Giao Diện VIP -->
-                <div class="settings-group">
-                    <h3 class="settings-group-title">🎨 Giao Diện Pro VIP (Themes)</h3>
-                    <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 10px;">
-                        Tùy chọn 5 phong cách lãng mạn cao cấp nhất dành riêng cho bạn:
-                    </p>
-                    <button class="settings-btn-primary" onclick="window.loveThemes.openThemeModal()">
-                        Mở Bảng Chọn Theme VIP ✨
-                    </button>
-                </div>
-
-                <!-- Nhạc Nền Tình Yêu -->
-                <div class="settings-group">
-                    <h3 class="settings-group-title">🎵 Nhạc Nền Lofi Tình Yêu</h3>
-                    <div class="form-field">
-                        <label class="form-label">Tùy chọn link bài hát MP3 yêu thích:</label>
-                        <input type="text" class="form-input" id="cfg-custom-music" placeholder="https://example.com/bai-hat-tinh-yeu.mp3" onchange="window.loveAudio.setCustomAudio(this.value)">
-                    </div>
-                    <button class="settings-btn-primary" onclick="window.loveAudio.toggleBGM()">Bật / Tắt Nhạc 🎶</button>
-                </div>
-
-                <!-- Kết nối Firebase Cloud Realtime -->
-                <div class="settings-group">
-                    <h3 class="settings-group-title">
-                        <span>☁️ Đồng Bộ Firebase (2 Điện Thoại)</span>
-                        <span id="firebase-status-badge" class="status-indicator disconnected"></span>
-                    </h3>
-                    
-                    <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 12px;" id="firebase-status-text">
-                        Chế độ Offline (Chưa cấu hình Firebase). Nhập thông tin để đồng bộ tin nhắn & ảnh real-time giữa 2 điện thoại của Gnoul & Minyu.
-                    </p>
-
-                    <div class="form-field">
-                        <label class="form-label">API Key (apiKey):</label>
-                        <input type="text" class="form-input" id="cfg-api-key" placeholder="AIzaSy...">
-                    </div>
-
-                    <div class="form-field">
-                        <label class="form-label">Database URL (databaseURL):</label>
-                        <input type="text" class="form-input" id="cfg-database-url" placeholder="https://your-app-default-rtdb.firebaseio.com">
-                    </div>
-
-                    <div class="form-field">
-                        <label class="form-label">Project ID (projectId):</label>
-                        <input type="text" class="form-input" id="cfg-project-id" placeholder="gnoul-minyu-love">
-                    </div>
-
-                    <div class="form-field">
-                        <label class="form-label">Auth Domain (authDomain):</label>
-                        <input type="text" class="form-input" id="cfg-auth-domain" placeholder="gnoul-minyu-love.firebaseapp.com">
-                    </div>
-
-                    <button class="settings-btn-primary" onclick="window.loveApp.saveFirebaseSettings()">Lưu & Kết Nối Ngay 🔗</button>
-                    <button class="settings-btn-secondary" onclick="window.loveApp.disconnectFirebase()">Ngắt Kết Nối Đám Mây</button>
-                </div>
-
-                <!-- Thông tin ứng dụng -->
-                <div class="settings-group" style="text-align: center;">
-                    <div style="font-size: 32px; margin-bottom: 6px;">💑</div>
-                    <h4 style="font-weight: 800; color: var(--text-main);">Gnoul & Minyu Love App Pro VIP</h4>
-                    <p style="font-size: 12px; color: var(--text-muted); margin-top: 4px;">
-                        Ngày bắt đầu: 04/04/2026 Dương Lịch (17/02 Bính Ngọ)<br>
-                        Tình yêu là khi hai trái tim đập cùng một nhịp 💕
-                    </p>
-                </div>
-
-            </section>
-
-        </main>
-
-
-        <!-- ================= THANH ĐIỀU HƯỚNG ĐÁY (BOTTOM NAVIGATION PRO) ================= -->
-        <nav class="bottom-nav-bar">
-            <button class="nav-tab-btn active" data-tab="home">
-                <span class="nav-tab-icon">💖</span>
-                <span class="nav-tab-label">Đếm Ngày</span>
-            </button>
-            <button class="nav-tab-btn" data-tab="calendar">
-                <span class="nav-tab-icon">🗓️</span>
-                <span class="nav-tab-label">Lịch & Lễ</span>
-            </button>
-            <button class="nav-tab-btn" data-tab="chat">
-                <span class="nav-tab-icon">💬</span>
-                <span class="nav-tab-label">Trò Chuyện</span>
-            </button>
-            <button class="nav-tab-btn" data-tab="games">
-                <span class="nav-tab-icon">🎮</span>
-                <span class="nav-tab-label">Minigame</span>
-            </button>
-            <button class="nav-tab-btn" data-tab="settings">
-                <span class="nav-tab-icon">⚙️</span>
-                <span class="nav-tab-label">Cài Đặt</span>
-            </button>
-        </nav>
-
-    </div>
-
-
-    <!-- ================= CÁC MODAL HỖ TRỢ ================= -->
-
-    <!-- Modal chọn Theme Pro VIP -->
-    <div class="modal-overlay" id="modal-theme-picker">
-        <div class="modal-box">
-            <button class="modal-close-btn" onclick="window.loveApp.closeModal('modal-theme-picker')">✕</button>
-            <h3 style="font-size: 16px; font-weight:800; color: var(--primary); margin-bottom: 12px;">🎨 Bộ Sưu Tập Theme VIP</h3>
-            <div class="theme-options-grid" id="theme-options-grid"></div>
-        </div>
-    </div>
-
-    <!-- Modal Chi Tiết Ngày Lịch Âm Dương -->
-    <div class="modal-overlay" id="modal-date-details">
-        <div class="modal-box">
-            <button class="modal-close-btn" onclick="window.loveApp.closeModal('modal-date-details')">✕</button>
-            <div id="date-details-content"></div>
-        </div>
-    </div>
-
-    <!-- Modal Đọc Bức Thư Bí Mật (Love Capsule) -->
-    <div class="modal-overlay" id="modal-capsule-letter">
-        <div class="modal-box" style="max-width: 400px;">
-            <button class="modal-close-btn" onclick="window.loveApp.closeModal('modal-capsule-letter')">✕</button>
-            <div id="capsule-letter-content"></div>
-        </div>
-    </div>
-
-    <!-- Modal chọn tâm trạng (Mood Picker) -->
-    <div class="modal-overlay" id="modal-mood-picker">
-        <div class="modal-box">
-            <button class="modal-close-btn" onclick="window.loveApp.closeModal('modal-mood-picker')">✕</button>
-            <h3 style="font-size: 16px; font-weight:800; color: var(--primary); margin-bottom: 14px;">Hôm nay bạn thấy thế nào?</h3>
-            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;">
-                <button class="quiz-opt-btn" onclick="window.loveWidgets.selectMood('🥰', 'Yêu bạn đời')">🥰 Yêu bạn đời</button>
-                <button class="quiz-opt-btn" onclick="window.loveWidgets.selectMood('🥺', 'Nhớ đối phương')">🥺 Nhớ đối phương</button>
-                <button class="quiz-opt-btn" onclick="window.loveWidgets.selectMood('✨', 'Rất vui vẻ')">✨ Rất vui vẻ</button>
-                <button class="quiz-opt-btn" onclick="window.loveWidgets.selectMood('🧋', 'Thèm trà sữa')">🧋 Thèm trà sữa</button>
-                <button class="quiz-opt-btn" onclick="window.loveWidgets.selectMood('😴', 'Buồn ngủ rùi')">😴 Buồn ngủ rùi</button>
-                <button class="quiz-opt-btn" onclick="window.loveWidgets.selectMood('🫂', 'Cần một cái ôm')">🫂 Cần một cái ôm</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal Album ảnh Locket -->
-    <div class="modal-overlay" id="modal-locket-gallery">
-        <div class="modal-box" style="max-width: 420px;">
-            <button class="modal-close-btn" onclick="window.loveApp.closeModal('modal-locket-gallery')">✕</button>
-            <h3 style="font-size: 16px; font-weight: 800; color: var(--primary); margin-bottom: 12px;">🖼️ Kỷ Niệm Locket Của Đôi Ta</h3>
-            <div id="locket-gallery-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; max-height: 60vh; overflow-y: auto;"></div>
-        </div>
-    </div>
-
-    <!-- Modal Chiến Thắng & Hình Phạt Mini Game -->
-    <div class="modal-overlay" id="modal-game-win">
-        <div class="modal-box">
-            <button class="modal-close-btn" onclick="window.loveApp.closeModal('modal-game-win')">✕</button>
-            <div id="game-win-content"></div>
-        </div>
-    </div>
-
-    <!-- Modal Xem Ảnh Fullscreen (Lightbox) -->
-    <div class="lightbox-modal" id="modal-image-lightbox" onclick="window.loveChat.closeLightbox()">
-        <img src="" alt="Full View" class="lightbox-content" id="lightbox-image">
-    </div>
-
-
-    <!-- ================= IMPORT SCRIPTS (PRO VIP PIPELINE) ================= -->
-    <script src="js/storage.js"></script>
-    <script src="js/audio.js"></script>
-    <script src="js/lunar.js"></script>
-    <script src="js/calendar-events.js"></script>
-    <script src="js/themes.js"></script>
-    <script src="js/pet.js"></script>
-    <script src="js/capsule.js"></script>
-    <script src="js/counter.js"></script>
-    <script src="js/widgets.js"></script>
-    <script src="js/chat.js"></script>
-    <script src="js/games.js"></script>
-    <script src="js/firebase-sync.js"></script>
-    <script src="js/app.js"></script>
-
-    <!-- Đồng hồ cập nhật thời gian thật trên top bar -->
-    <script>
-        function updateClock() {
-            const clockEl = document.getElementById('status-clock');
-            if (clockEl) {
-                const now = new Date();
-                clockEl.textContent = now.toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' });
-            }
-        }
-        setInterval(updateClock, 1000);
-        updateClock();
-    </script>
-</body>
-</html>
+<body><div class="app">
+  <header class="top"><div class="hello"><div><small>Xin chào, tình yêu của anh</small><strong id="todayLabel">Hôm nay</strong></div><div class="avatar">♡</div></div><div class="couple"><h1>Gnoul <span>♡</span> Minyu</h1><p>Our little universe</p></div><div class="premium">✦ OUR PRIVATE SPACE</div><div class="days"><b id="dayCount">0</b><span>ngày yêu nhau</span></div></header>
+  <main>
+    <section id="home" class="page active">
+      <div class="quick"><button onclick="openPage('chat')"><i>💌</i>Nhắn tin</button><button onclick="openPage('photos')"><i>📸</i>Khoảnh khắc</button><button onclick="openPage('food')"><i>🍜</i>Ăn gì?</button><button onclick="openPage('games')"><i>🎮</i>Chơi cùng</button></div>
+      <div class="section-head"><h2>Kỷ niệm của mình</h2><button onclick="openPage('photos')">Xem tất cả →</button></div>
+      <article class="memory"><span class="tag">04 · 04 · 2026</span><h3>Ngày chúng mình bắt đầu</h3><p>Một ngày bình thường, mà thật đặc biệt.</p><button onclick="alert('Mãi là ngày đầu tiên của Gnoul & Minyu ♡')">Nhớ lại ♡</button></article>
+      <article class="locket" onclick="openPage('photos')"><img id="locketPhoto" alt="Ảnh mới nhất của Minyu"><div><b id="locketText">Chờ tấm ảnh mới từ Minyu ♡</b><span>Chạm để mở album riêng của hai đứa</span></div></article>
+      <div class="music-pill"><span id="musicLabel">♫ Love radio · chạm để bật giai điệu</span><button onclick="toggleMusic()" id="musicButton">Phát ▶</button></div>
+      <div class="ritual"><div class="orb">☕</div><div><b>Ritual hôm nay · 2 phút</b><p>Hãy nói một điều Minyu làm bạn mỉm cười.</p></div></div><div class="section-head"><h2>Góc nhỏ hôm nay</h2><button onclick="openPage('calendar')">Lịch của mình →</button></div><div class="widgets"><article class="widget"><span class="label">Thời tiết yêu thương</span><div class="weather">☀️ <b>31°</b></div><div class="mood-row"><span id="moodIcon">🥰</span><p id="moodText">Minyu đang nhớ Gnoul<br><small>Cập nhật vừa xong</small></p></div></article><article class="widget"><span class="label">Mức độ yêu hôm nay</span><div class="lovebar"><i></i></div><div class="quote">“Có em là đủ.”<small>— Gnoul</small></div></article></div>
+    </section>
+    <section id="chat" class="page"><div class="page-top"><h2>Hộp thư yêu</h2><button class="round" onclick="toggleRole()" id="roleButton">G</button></div><div id="chatList" class="chat-list"><div class="message her">Gnoul ơi, hôm nay nhớ em không? 🥺<small>Minyu · 09:14</small></div><div class="message you">Nhớ chứ, nhớ nhiều lắm luôn ♡<small>Gnoul · 09:15</small></div><div class="message her">Vậy tối mình chơi game nha!<small>Minyu · 09:16</small></div></div><div class="compose"><label class="attach" title="Gửi ảnh">⌁<input class="hidden" type="file" accept="image/*" onchange="sendImage(event)"></label><input id="messageInput" placeholder="Nhắn cho người thương..." onkeydown="if(event.key==='Enter')sendMessage()"><button class="send" onclick="sendMessage()">➤</button></div></section>
+    <section id="photos" class="page"><div class="page-top"><h2>Khoảnh khắc</h2><label class="round" style="display:grid;place-items:center">＋<input class="hidden" type="file" accept="image/*" multiple onchange="addPhotos(event)"></label></div><p style="font-size:12px;color:var(--muted);margin:6px 2px">Những mảnh ghép ngọt ngào của Gnoul và Minyu.</p><div id="gallery" class="gallery"><label class="photo upload"><span style="position:static;color:var(--pink);text-shadow:none"><b>＋</b>Thêm ảnh</span><input class="hidden" type="file" accept="image/*" multiple onchange="addPhotos(event)"></label><div class="photo"><span>Our day ♡</span></div><div class="photo"><span>Sweet moments</span></div><div class="photo"><span>Forever us</span></div></div></section>
+    <section id="calendar" class="page"><div class="page-top"><h2>Lịch của mình</h2><button class="round" onclick="openPage('home')">⌂</button></div><p style="font-size:12px;color:var(--muted);margin:6px 2px">Ngày dương · lịch âm · những dịp không được phép quên.</p><div class="calendar-card"><div class="cal-title"><b id="calMonth">Tháng</b><span id="lunarToday">Âm lịch</span></div><div class="week"><span>T2</span><span>T3</span><span>T4</span><span>T5</span><span>T6</span><span>T7</span><span>CN</span></div><div id="calendarDates" class="dates"></div></div><div class="events" id="eventList"></div><div class="milestone"><i>💎</i><div><b id="nextMilestone">Cột mốc của chúng mình</b><p id="milestoneText">Đang tính ngày...</p></div></div></section>
+    <section id="food" class="page"><div class="page-top"><h2>Hôm nay ăn gì?</h2><button class="round" onclick="openPage('home')">⌂</button></div><p style="font-size:12px;color:var(--muted);margin:6px 2px">Corgi chung của hai đứa sẽ chọn hộ một món ngon ở Hà Nội!</p><article class="pet-card"><div class="pet-head"><div><h3>Mochi · Corgi của chúng mình</h3><p>Gnoul & Minyu cùng nuôi Mochi ♡</p></div><span class="pet-level" id="petLevel">Lv. 1</span></div><div class="pet-row"><div class="corgi"><i class="body"></i><i class="leg one"></i><i class="leg two"></i><i class="head"></i><i class="ear left"></i><i class="ear right"></i><i class="eye one"></i><i class="eye two"></i><i class="nose"></i></div><div class="pet-stats"><div class="pet-stat">🍖<i><b id="petFull"></b></i><span id="petFullText">80%</span></div><div class="pet-stat">♡<i><b id="petLove"></b></i><span id="petLoveText">90%</span></div><div class="pet-stat">✨<i><b id="petJoy"></b></i><span id="petJoyText">75%</span></div></div></div><div class="pet-actions"><button onclick="carePet('food')">🍖 Cho ăn</button><button onclick="carePet('love')">🤍 Vuốt ve</button><button onclick="carePet('play')">🎾 Chơi cùng</button></div></article><div class="food-hero"><span style="font-size:10px;letter-spacing:1.2px;font-weight:700">HANOI FOOD MYSTERY BAG</span><h2>Để Mochi bóc túi mù</h2><p>500 món ngon đang chờ Gnoul & Minyu.</p><div id="corgi" class="corgi"><i class="body"></i><i class="leg one"></i><i class="leg two"></i><i class="head"></i><i class="ear left"></i><i class="ear right"></i><i class="eye one"></i><i class="eye two"></i><i class="nose"></i><i id="bag" class="bag"></i></div><button class="food-btn" onclick="openFoodBag()">Random món đi ăn ✦</button></div><article id="foodResult" class="food-result"><div class="food-info"><span class="tag">GỢI Ý HÔM NAY · HÀ NỘI</span><h3 id="foodName">Đang chọn món...</h3><p id="foodDesc">Một cuộc hẹn ngon lành cho hai đứa.</p><div class="food-actions"><button onclick="openFoodBag()">Random lại ↻</button><button onclick="shareFood()">Chốt với Minyu ♡</button></div></div></article></section>
+    <section id="games" class="page"><div class="page-top"><h2>Chơi cùng nhau</h2><button class="round" onclick="openPage('home')">⌂</button></div><div class="game-card"><span style="font-size:11px;letter-spacing:1px">11 HOẠT ĐỘNG DÀNH RIÊNG CHO HAI ĐỨA</span><h3>Love Arcade</h3><p>Chọn một trò rồi gửi kết quả cho người thương qua Hộp thư yêu.</p><button onclick="launch('truth')">Bắt đầu chơi</button></div><div class="game-grid"><button class="game-tile" onclick="launch('tictactoe')"><i>❎</i><b>Caro tình yêu</b><small>Gnoul vs Minyu</small></button><button class="game-tile" onclick="launch('truth')"><i>💭</i><b>Truth or Love</b><small>Rút câu hỏi thật lòng</small></button><button class="game-tile" onclick="launch('rps')"><i>✊</i><b>Oẳn tù tì</b><small>Đấu nhanh 3 lượt</small></button><button class="game-tile" onclick="launch('dice')"><i>🎲</i><b>Xúc xắc hẹn hò</b><small>Gieo ra điều phải làm</small></button><button class="game-tile" onclick="launch('wheel')"><i>🎡</i><b>Vòng quay date</b><small>Chọn ý tưởng hẹn hò</small></button><button class="game-tile" onclick="launch('challenge')"><i>🔥</i><b>Thử thách yêu</b><small>Một nhiệm vụ ngọt ngào</small></button><button class="game-tile" onclick="launch('jar')"><i>🫙</i><b>Hũ ý tưởng</b><small>Khi chẳng biết làm gì</small></button><button class="game-tile" onclick="launch('quiz')"><i>🧩</i><b>Quiz về nhau</b><small>Kiểm tra độ hiểu nhau</small></button><button class="game-tile" onclick="launch('countdown')"><i>⏳</i><b>Đếm ngược date</b><small>Lưu cuộc hẹn kế tiếp</small></button><button class="game-tile" onclick="launch('promise')"><i>🤝</i><b>Lời hứa nhỏ</b><small>Lưu điều muốn làm cùng</small></button><button class="game-tile" onclick="launch('letter')"><i>💌</i><b>Thư bí mật</b><small>Viết khi nhớ người ấy</small></button></div><div class="heart-game"><div class="heart" id="heart" onclick="tapHeart()">♡</div><p>Chạm tim để gửi một nhịp yêu thương</p><div class="score" id="score">0 nhịp tim đã gửi hôm nay</div></div><div id="playZone" class="play-zone"><h3>Sẵn sàng chưa? ♡</h3><p>Chọn một thẻ trò chơi bên trên để bắt đầu.</p></div></section>
+  </main>
+  <nav class="nav"><button class="active" data-page="home" onclick="openPage('home')"><i>⌂</i>Trang chủ</button><button data-page="chat" onclick="openPage('chat')"><i>♡</i>Tin nhắn</button><button data-page="calendar" onclick="openPage('calendar')"><i>◫</i>Lịch</button><button data-page="photos" onclick="openPage('photos')"><i>▧</i>Ảnh</button><button data-page="games" onclick="openPage('games')"><i>♧</i>Chơi</button></nav>
+  <div id="sheet" class="sheet"><div class="handle"></div><h3>Tâm trạng của bạn?</h3><div class="moods"><button onclick="chooseMood('🥰','đang nhớ Gnoul')">🥰<small>Yêu quá</small></button><button onclick="chooseMood('🥺','hơi nhớ Minyu')">🥺<small>Nhớ</small></button><button onclick="chooseMood('😚','muốn được hôn')">😚<small>Muốn hôn</small></button><button onclick="chooseMood('🤗','cần một cái ôm')">🤗<small>Cần ôm</small></button><button onclick="chooseMood('✨','rất hạnh phúc')">✨<small>Vui</small></button></div><textarea id="note" placeholder="Để lại một lời nhắn ngọt ngào..."></textarea><button class="primary" onclick="saveNote()">Gửi đến người thương ♡</button></div>
+</div>
+<script>
+  const start=new Date(2026,3,4), qs=s=>document.querySelector(s); let beats=+localStorage.loveBeats||0;
+  const hanoiFoods=['Phở bò','Phở gà','Bún chả','Bún đậu mắm tôm','Bún thang','Bún mọc','Bún riêu cua','Bún ốc','Bún ngan','Bún cá','Bún bò Huế','Bún dọc mùng','Bún mắm','Bún hải sản','Bún chấm','Miến lươn','Miến ngan','Miến trộn','Miến gà','Miến cua','Chả cá Lã Vọng','Cá nướng riềng mẻ','Lẩu riêu cua bắp bò','Lẩu ếch','Lẩu thái','Lẩu nấm','Lẩu bò nhúng dấm','Lẩu gà lá é','Lẩu hải sản','Lẩu cháo chim','Nem rán Hà Nội','Nem lụi','Nem nướng','Nem chua rán','Nem tai trộn thính','Chả rươi','Chả mực','Chả cốm','Chả lá lốt','Chả ốc','Bánh cuốn Thanh Trì','Bánh cuốn nóng','Bánh đa cua','Bánh đa trộn','Bánh mì pate','Bánh mì chảo','Bánh mì sốt vang','Bánh gối','Bánh tôm Hồ Tây','Bánh xèo','Bánh khúc','Bánh giò','Bánh rán mặn','Bánh rán ngọt','Bánh bao chiên','Bánh bao xá xíu','Bánh đúc nóng','Bánh đúc nộm','Bánh tráng trộn','Bánh tráng nướng','Cơm rang dưa bò','Cơm tấm sườn bì','Cơm gà xối mỡ','Cơm gà Hội An','Cơm niêu','Cơm sườn nướng','Cơm bò lúc lắc','Cơm chiên hải sản','Cơm cá kho','Cơm rang kim chi','Xôi xéo','Xôi gà','Xôi cá rô','Xôi Yến','Xôi ngô','Xôi lạc','Xôi thịt kho','Xôi sườn cay','Xôi chả mực','Xôi mặn','Mì vằn thắn','Mì gà tần','Mì trộn','Mì cay','Mì Quảng','Mì vịt tiềm','Mì ramen','Mì udon','Mì spaghetti','Mì tương đen','Cháo sườn','Cháo trai','Cháo lòng','Cháo chim','Cháo ếch','Cháo gà','Cháo vịt','Cháo cá','Cháo lòng non','Cháo trắng thịt băm','Gà rán','Gà nướng mật ong','Gà không lối thoát','Gà tần thuốc bắc','Gà hấp lá chanh','Gà rang muối','Gà sốt cay','Vịt quay','Vịt om sấu','Vịt nướng','Ngan cháy tỏi','Ngan luộc','Chim quay','Chim cút nướng','Sườn nướng','Sườn xào chua ngọt','Thịt xiên nướng','Bò nướng lá lốt','Bò nhúng giấm','Bò sốt vang','Bò lúc lắc','Bò bít tết','Bò kho','Bò né','Phở cuốn','Phở chiên phồng','Phở chiên trứng','Phở xào','Phở trộn','Nộm bò khô','Nộm sứa','Nộm gà xé','Nộm đu đủ','Nộm tai heo','Gỏi cuốn','Gỏi xoài hải sản','Salad cá ngừ','Salad ức gà','Salad bò','Ốc luộc','Ốc xào me','Ốc xào dừa','Ốc hương rang muối','Ngao hấp sả','Sò nướng mỡ hành','Hàu nướng phô mai','Cút lộn xào me','Chân gà sả tắc','Chân gà nướng','Khoai tây lắc','Khoai lang kén','Ngô xào','Ngô nướng','Xiên que chiên','Đậu hũ chiên','Tào phớ','Chè khúc bạch','Chè bưởi','Chè Thái','Chè sầu','Chè đỗ đen','Chè đỗ xanh','Chè sen long nhãn','Sữa chua dẻo','Sữa chua nếp cẩm','Caramen','Kem xôi','Kem Tràng Tiền','Kem dừa','Kem bơ','Kem tươi','Hoa quả dầm','Sinh tố bơ','Nước ép cam','Trà chanh','Trà quất','Trà đào cam sả','Trà sữa trân châu','Cà phê trứng','Cà phê cốt dừa','Cà phê sữa đá','Bạc xỉu','Cacao nóng','Matcha latte','Bánh cốm','Cốm làng Vòng','Ô mai Hà Nội','Kẹo lạc','Kẹo dồi','Bánh chả','Bánh gai','Bánh dày','Bánh tro','Bánh in','Bánh su kem','Bánh tiramisu','Bánh red velvet','Bánh cheesecake','Pizza phô mai','Pizza hải sản','Hamburger bò','Hotdog','Tokbokki','Kimbap','Gà sốt Hàn','Cơm cuộn','Sushi','Sashimi','Takoyaki','Mandu Hàn Quốc'];
+  const foodStyles=['đặc biệt','truyền thống','thập cẩm','nóng hổi','vỉa hè','phố cổ','cay nhẹ','nhiều topping','ít cay','siêu no','bản đầy đặn','phiên bản chay','bản mini','buổi tối','buổi trưa','cuối tuần'];const foodBase=[...hanoiFoods];for(let i=hanoiFoods.length;i<500;i++)hanoiFoods.push(foodBase[i%foodBase.length]+' · '+foodStyles[Math.floor(i/foodBase.length)%foodStyles.length]);let pet=JSON.parse(localStorage.mochiPet||'{"full":80,"love":90,"joy":75}');function renderPet(){for(const [k,id] of [['full','Full'],['love','Love'],['joy','Joy']]){qs('#pet'+id).style.width=pet[k]+'%';qs('#pet'+id+'Text').textContent=pet[k]+'%'}qs('#petLevel').textContent='Lv. '+(1+Math.floor((pet.full+pet.love+pet.joy)/100))}function carePet(type){if(type==='food')pet.full=Math.min(100,pet.full+10);if(type==='love')pet.love=Math.min(100,pet.love+10);if(type==='play')pet.joy=Math.min(100,pet.joy+10);localStorage.mochiPet=JSON.stringify(pet);renderPet()}renderPet();let pickedFood='';function openFoodBag(){let dog=qs('#corgi'),bag=qs('#bag');dog.classList.add('shake');bag.classList.remove('open');qs('#foodResult').classList.remove('show');setTimeout(()=>{let n=Math.floor(Math.random()*hanoiFoods.length);pickedFood=hanoiFoods[n];qs('#foodName').textContent=pickedFood;qs('#foodDesc').textContent='Mochi gợi ý: rủ Minyu đi ăn '+pickedFood+' tại một quán thật xinh ở Hà Nội nhé!';dog.classList.remove('shake');bag.classList.add('open');qs('#foodResult').classList.add('show');setTimeout(()=>bag.classList.remove('open'),700)},850)}function shareFood(){if(pickedFood)shareResult('🍜 Mochi đã random: hôm nay Gnoul muốn ăn '+pickedFood+' với Minyu!')}
+  const fmt=new Intl.DateTimeFormat('vi-VN-u-ca-chinese',{day:'numeric',month:'numeric'});function lunar(d){return fmt.format(d).replace(' tháng ','/')};
+  function renderCalendar(){let now=new Date(),y=now.getFullYear(),m=now.getMonth(),first=new Date(y,m,1),last=new Date(y,m+1,0),out='';qs('#calMonth').textContent='Tháng '+(m+1)+' · '+y;qs('#lunarToday').textContent='Hôm nay '+lunar(now)+' âm lịch';qs('#todayLabel').textContent=now.toLocaleDateString('vi-VN',{weekday:'long',day:'numeric',month:'long'});for(let i=0;i<(first.getDay()+6)%7;i++)out+='<div></div>';for(let d=1;d<=last.getDate();d++){let date=new Date(y,m,d),isToday=d===now.getDate(),ann=m===3&&d===4,holiday=(m===0&&d===1)||(m===3&&d===30)||(m===4&&d===1)||(m===8&&d===2);out+='<div class="date '+(isToday?'today ':ann||holiday?'event ':'')+'">'+d+'<small>'+lunar(date)+'</small></div>'}qs('#calendarDates').innerHTML=out;let next=new Date(y,3,4);if(next<now)next.setFullYear(y+1);let days=Math.ceil((next-now)/86400000);qs('#nextMilestone').textContent='Kỷ niệm yêu nhau · '+next.getFullYear();qs('#milestoneText').textContent='Còn '+days+' ngày đến tròn '+(next.getFullYear()-2026)+' năm của Gnoul & Minyu';let events=[['♡ 04/04','Kỷ niệm yêu nhau của Gnoul & Minyu'],['🇻🇳 30/04','Ngày Giải phóng miền Nam'],['🌿 01/05','Quốc tế Lao động'],['✨ 02/09','Quốc khánh Việt Nam'],['🧧 Tết Nguyên Đán','Tự động nhận diện theo lịch âm']];qs('#eventList').innerHTML=events.map(e=>'<div class="event"><b>'+e[0]+'</b><span>'+e[1]+'</span></div>').join('')}
+  function updateDays(){qs('#dayCount').textContent=Math.max(0,Math.floor((Date.now()-start)/86400000)+1)} updateDays();renderCalendar();setInterval(updateDays,60000);
+  function openPage(id){document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));qs('#'+id).classList.add('active');document.querySelectorAll('.nav button').forEach(x=>x.classList.toggle('active',x.dataset.page===id));window.scrollTo({top:0,behavior:'smooth'})}
+  function openSheet(){qs('#sheet').classList.add('show')} document.addEventListener('click',e=>{if(e.target===qs('#sheet'))qs('#sheet').classList.remove('show')});
+  function chooseMood(icon,text){localStorage.mood=JSON.stringify({icon,text});qs('#moodIcon').textContent=icon;qs('#moodText').innerHTML='Minyu '+text+'<br><small>Cập nhật vừa xong</small>'}
+  function saveNote(){let t=qs('#note').value.trim();if(t){addMessage(t,'you');qs('#note').value='';openPage('chat')}qs('#sheet').classList.remove('show')}
+  function time(){return new Date().toLocaleTimeString('vi-VN',{hour:'2-digit',minute:'2-digit'})}
+  let currentRole=localStorage.currentRole||'Gnoul',musicOn=false,audioCtx;function toggleRole(){currentRole=currentRole==='Gnoul'?'Minyu':'Gnoul';localStorage.currentRole=currentRole;qs('#roleButton').textContent=currentRole[0];qs('#messageInput').placeholder='Nhắn với vai '+currentRole+'...'}function addMessage(text,who=currentRole==='Gnoul'?'you':'her',img=''){let d=document.createElement('div');d.className='message '+who;let sender=who==='you'?'Gnoul':'Minyu';d.innerHTML=(text?text.replace(/[<>&]/g,c=>({'<':'&lt;','>':'&gt;','&':'&amp;'}[c])):'')+(img?'<img class="chat-img" src="'+img+'">':'')+'<small>'+sender+' · '+time()+'</small>';qs('#chatList').append(d);d.scrollIntoView({behavior:'smooth',block:'end'})}function sendMessage(){let i=qs('#messageInput'),t=i.value.trim();if(t){addMessage(t);i.value=''}}function updateLocket(src,label='Minyu vừa gửi một khoảnh khắc ♡'){localStorage.locketPhoto=src;qs('#locketPhoto').src=src;qs('#locketText').textContent=label}function sendImage(e){let f=e.target.files[0];if(!f)return;let r=new FileReader;r.onload=()=>{addMessage('',currentRole==='Gnoul'?'you':'her',r.result);updateLocket(r.result,currentRole+' vừa gửi ảnh mới ♡')};r.readAsDataURL(f);e.target.value=''}function addPhotos(e){[...e.target.files].forEach(f=>{let r=new FileReader;r.onload=()=>{let d=document.createElement('div');d.className='photo';d.innerHTML='<img src="'+r.result+'"><span>Just us ♡</span>';qs('#gallery').append(d);updateLocket(r.result,currentRole+' vừa lưu một khoảnh khắc ♡')};r.readAsDataURL(f)});e.target.value=''}function toggleMusic(){musicOn=!musicOn;qs('#musicButton').textContent=musicOn?'Dừng ❚❚':'Phát ▶';qs('#musicLabel').textContent=musicOn?'♫ Love radio · đang chơi giai điệu nhỏ':'♫ Love radio · chạm để bật giai điệu';if(musicOn){audioCtx??=new(window.AudioContext||window.webkitAudioContext)();let o=audioCtx.createOscillator(),g=audioCtx.createGain();o.frequency.value=523.25;g.gain.setValueAtTime(.025,audioCtx.currentTime);g.gain.exponentialRampToValueAtTime(.001,audioCtx.currentTime+1.8);o.connect(g).connect(audioCtx.destination);o.start();o.stop(audioCtx.currentTime+1.8)}}
+  const questions=['Lần đầu gặp nhau, điều gì làm em nhớ nhất?','Nếu có một chuyến đi cùng nhau, em muốn đi đâu?','Khoảnh khắc nào khiến em thấy được yêu thương nhất?','Em muốn Gnoul gọi em bằng biệt danh nào?','Một điều nhỏ Gnoul làm khiến Minyu vui cả ngày?'];
+  const tasks=['Gửi một voice 10 giây nói “Anh/em nhớ em/anh”.','Kể 3 điều khiến hôm nay em biết ơn người ấy.','Gửi tấm ảnh nơi em đang đứng ngay lúc này.','Hẹn một cái ôm thật lâu khi gặp nhau.','Nhắn một lời khen mà em chưa từng nói.'];
+  const dates=['Đi cafe ở một góc mới','Cùng xem một bộ phim','Đi bộ tối và ăn món yêu thích','Nấu món mới cho nhau','Chụp photobooth đôi','Video call và nghe chung playlist'];
+  function zone(title,body,controls=''){qs('#playZone').innerHTML='<h3>'+title+'</h3><p>'+body+'</p>'+controls;qs('#playZone').scrollIntoView({behavior:'smooth',block:'center'})}
+  function truthGame(){launch('truth')}
+  function launch(type){let pick=a=>a[Math.floor(Math.random()*a.length)]; if(type==='truth')zone('Truth or Love 💭','“'+pick(questions)+'”','<button class="mini-action" onclick="shareResult(\'Câu hỏi Truth or Love: '+pick(questions)+'\')">Gửi cho Minyu</button>');
+    if(type==='tictactoe'){window.tttBoard=Array(9).fill('');window.tttTurn='💙';renderTtt()}
+    if(type==='rps')zone('Oẳn tù tì ✊','Chọn tay của Gnoul. Minyu chọn tay của Minyu trên máy của cô ấy nhé!','<div class="choice-row"><button onclick="rps(\'✊\')">✊</button><button onclick="rps(\'✌️\')">✌️</button><button onclick="rps(\'🖐️\')">🖐️</button></div>');
+    if(type==='dice'){let n=Math.ceil(Math.random()*6);zone('Xúc xắc hẹn hò 🎲','Bạn đã gieo được '+n+' — '+tasks[n-1],'<button class="mini-action" onclick="shareResult(\'Xúc xắc của Gnoul: '+n+' — '+tasks[n-1]+'\')">Gửi kết quả</button>')}
+    if(type==='wheel'){let x=pick(dates);zone('Vòng quay date 🎡','Điểm đến của hai đứa: '+x,'<button class="mini-action" onclick="launch(\'wheel\')">Quay lại</button> <button class="mini-action" onclick="shareResult(\'Date idea của Gnoul & Minyu: '+x+'\')">Chốt kèo</button>')}
+    if(type==='challenge'){let x=pick(tasks);zone('Thử thách yêu 🔥',x,'<button class="mini-action" onclick="shareResult(\'Thử thách hôm nay: '+x+'\')">Nhận thử thách</button>')}
+    if(type==='jar'){let x=pick(['Làm playlist 5 bài cho người ấy','Cùng lên danh sách quán muốn thử','Xem lại ảnh cũ và chọn ảnh thích nhất','Viết điều muốn làm khi gặp nhau','Đặt một cuộc gọi bất ngờ']);zone('Hũ ý tưởng 🫙',x,'<button class="mini-action" onclick="launch(\'jar\')">Lấy ý tưởng khác</button>')}
+    if(type==='quiz')zone('Quiz về nhau 🧩','Minyu thích một buổi hẹn như thế nào nhất?','<div class="choice-row"><button onclick="quiz(\'Cà phê\')">☕</button><button onclick="quiz(\'Phim\')">🎬</button><button onclick="quiz(\'Dạo chơi\')">🌙</button></div><span class="badge">Hãy hỏi Minyu để biết đáp án!</span>');
+    if(type==='countdown')zone('Đếm ngược date ⏳','Lưu ngày hẹn tiếp theo của hai đứa.','<input id="dateInput" class="mini-input" type="date"><button class="mini-action" onclick="saveDate()">Lưu ngày hẹn</button>');
+    if(type==='promise')zone('Lời hứa nhỏ 🤝','Viết một điều bạn muốn làm cho Minyu.','<input id="promiseInput" class="mini-input" placeholder="Ví dụ: Luôn lắng nghe em..."><button class="mini-action" onclick="savePromise()">Lưu lời hứa</button>');
+    if(type==='letter')zone('Thư bí mật 💌','Viết ngay điều Gnoul muốn nói với Minyu.','<input id="letterInput" class="mini-input" placeholder="Minyu à, anh muốn nói là..."><button class="mini-action" onclick="sendLetter()">Gửi vào Hộp thư yêu</button>'); }
+  function rps(hand){let a=['✊','✌️','🖐️'],bot=a[Math.floor(Math.random()*3)];zone('Kết quả oẳn tù tì', 'Gnoul: '+hand+' &nbsp; · &nbsp; Minyu: '+bot,'<button class="mini-action" onclick="shareResult(\'Oẳn tù tì: Gnoul '+hand+' / Minyu '+bot+'\')">Gửi kết quả</button>')}
+  function quiz(v){zone('Câu trả lời đã chọn','Gnoul đoán: '+v+' — hãy gửi cho Minyu xác nhận nhé!','<button class="mini-action" onclick="shareResult(\'Quiz: Gnoul đoán Minyu thích date '+v+'\')">Gửi Minyu</button>')}
+  function shareResult(t){addMessage(t);openPage('chat')}
+  function saveDate(){let d=qs('#dateInput').value;if(d){localStorage.nextDate=d;zone('Đã lưu ngày hẹn ♡','Ngày hẹn tiếp theo: '+new Date(d+'T00:00').toLocaleDateString('vi-VN'))}}
+  function savePromise(){let t=qs('#promiseInput').value.trim();if(t){localStorage.promise=t;zone('Lời hứa đã được cất giữ 🤝','“'+t+'”','<span class="badge">Hãy cùng giữ lời nhé!</span>')}}
+  function sendLetter(){let t=qs('#letterInput').value.trim();if(t){addMessage('💌 Thư bí mật: '+t);openPage('chat')}}
+  function renderTtt(msg='Lượt của '+window.tttTurn){zone('Caro tình yêu ❎',msg,'<div class="ttt">'+window.tttBoard.map((v,i)=>'<button onclick="playTtt('+i+')">'+v+'</button>').join('')+'</div><span class="badge">💙 Gnoul · 💖 Minyu</span>')}function playTtt(i){if(window.tttBoard[i])return;window.tttBoard[i]=window.tttTurn;let wins=[[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]],won=wins.some(x=>x.every(n=>window.tttBoard[n]===window.tttTurn));if(won){let winner=window.tttTurn==='💙'?'Gnoul':'Minyu';return renderTtt(winner+' thắng! Người kia phải gửi 10 cái hôn ♡')}if(window.tttBoard.every(Boolean))return renderTtt('Hòa rồi! Hai đứa cùng đi uống trà sữa nhé ♡');window.tttTurn=window.tttTurn==='💙'?'💖':'💙';renderTtt()}
+  function tapHeart(){beats++;localStorage.loveBeats=beats;qs('#heart').textContent='♥';qs('#heart').classList.remove('pop');requestAnimationFrame(()=>qs('#heart').classList.add('pop'));qs('#score').textContent=beats+' nhịp tim đã gửi hôm nay'}qs('#score').textContent=beats+' nhịp tim đã gửi hôm nay';qs('#roleButton').textContent=currentRole[0];let m=localStorage.mood;if(m){m=JSON.parse(m);chooseMood(m.icon,m.text)}if(localStorage.locketPhoto)updateLocket(localStorage.locketPhoto,'Khoảnh khắc gần nhất của hai đứa ♡')
+</script></body></html>
