@@ -1,9 +1,13 @@
 {
   "name": "Gnoul & Minyu — Love Together",
   "short_name": "Love Together",
-  "start_url": "./",
+  "start_url": "./?source=pwa",
   "display": "standalone",
   "background_color": "#fff8f8",
   "theme_color": "#ff5d85",
-  "icons": [{ "src": "assets/love-together-logo-v2.png", "sizes": "1280x1280", "type": "image/png", "purpose": "any maskable" }]
+  "icons": [{ "src": "assets/love-together-logo-v2.png", "sizes": "1280x1280", "type": "image/png", "purpose": "any maskable" }],
+  "shortcuts": [
+    { "name": "Nhắn Minyu", "url": "./?page=chat", "icons": [{ "src": "assets/love-together-logo-v2.png", "sizes": "1280x1280" }] },
+    { "name": "Mở Mochi", "url": "./?page=food", "icons": [{ "src": "assets/mochi-corgi-excited.png", "sizes": "512x512" }] }
+  ]
 }
