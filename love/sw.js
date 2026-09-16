@@ -1,4 +1,4 @@
-const CACHE_NAME = 'love-together-v2026-09-16-loveplus';
+const CACHE_NAME = 'love-together-v2026-09-16-loveplus-polish1';
 const APP_SHELL = [
   './',
   './index.html',
