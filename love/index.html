@@ -67,6 +67,12 @@
       body{padding:0}.app{margin:0;max-width:none;padding-bottom:108px}.nav{left:50%;top:auto;bottom:0;transform:translateX(-50%);width:min(560px,100%);height:calc(78px + env(safe-area-inset-bottom));padding:9px 17px calc(9px + env(safe-area-inset-bottom));border:0;border-top:1px solid #f4e4e7;border-radius:0;background:#fffefa;color:var(--ink);display:flex;flex-direction:row;align-items:center;justify-content:space-around;gap:0;box-shadow:0 -8px 26px rgba(65,33,52,.07)}
       .nav-brand,.nav:after{display:none}.nav button{display:flex!important;min-height:0;height:auto;flex:1;align-items:center;justify-content:center;gap:3px;padding:7px 3px;color:#8b5360;font-size:11px}.nav button:before{display:none}.nav button.active{background:transparent;color:var(--pink)}.top{height:204px;padding:23px 28px}.hello,.couple{max-width:760px;margin-left:auto;margin-right:auto}.couple{padding-right:152px;margin-top:24px}.days{right:28px}.premium{right:28px;top:89px}.desktop-toolbar{padding:0 28px}.workspace-label{min-width:130px}main{padding:12px 28px 70px}.tools-panel{left:50%;width:min(560px,100%)}.tools-fab{right:22px;bottom:104px}
     }
+    /* Prevent the desktop search bar from covering the love counter while scrolling. */
+    @media (min-width:820px){
+      .desktop-toolbar{position:relative;top:auto;z-index:2}
+      .top{isolation:isolate}.days,.premium{z-index:3}
+      .days b{white-space:nowrap}.workspace-label{white-space:nowrap}
+    }
     @media (prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
   </style>
   <script>
