@@ -3,7 +3,7 @@ const APP_SHELL = [
   './',
   './index.html',
   './manifest.webmanifest',
-  './assets/love-together-logo-v2.png',
+  './assets/love-together-icon-v3.png',
   './assets/mochi-corgi-pixel.png',
   './assets/mochi-corgi-excited.png',
   './assets/mochi-12-expressions.png'
