@@ -5,5 +5,5 @@
   "display": "standalone",
   "background_color": "#fff8f8",
   "theme_color": "#ff5d85",
-  "icons": [{ "src": "assets/gnoul-minyu-logo.png", "sizes": "1280x1280", "type": "image/png", "purpose": "any maskable" }]
+  "icons": [{ "src": "assets/love-together-logo-v2.png", "sizes": "1280x1280", "type": "image/png", "purpose": "any maskable" }]
 }
