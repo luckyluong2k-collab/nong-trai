@@ -54,6 +54,19 @@
     .corgi.shake{animation:shake .28s ease-in-out 5}.mochi-pixel.shake{animation:shake .28s ease-in-out 5}
     @media (max-width:480px){main{padding-left:14px;padding-right:14px}.compose{bottom:calc(88px + env(safe-area-inset-bottom))}.quick{gap:8px}.tools-panel{padding-bottom:calc(24px + env(safe-area-inset-bottom))}}
     @media (min-width:820px){.app{padding-bottom:40px}.tools-fab{bottom:32px}.tools-panel{max-height:78dvh}.nav{padding-bottom:22px}}
+    /* Desktop hierarchy: greeting → couple name → status, with the counters kept separate. */
+    @media (min-width:820px){
+      .app{margin-left:232px}.nav{width:232px}.top{height:190px;padding:24px 42px}
+      .hello{height:31px}.couple{margin:18px auto 0;padding-right:205px}.couple h1{margin:0;line-height:1.08}
+      .couple p{margin-top:7px}.days{top:28px;right:42px;bottom:auto;min-width:98px}.premium{top:92px;right:42px;bottom:auto;left:auto}
+      .desktop-toolbar{height:62px}.quick{margin-top:0}.page-top{padding-top:26px}
+      main{padding-bottom:72px}.nav-brand{padding-bottom:22px}.nav button{min-height:44px}
+    }
+    /* At compact desktop widths, use the familiar mobile navigation instead of crushing the sidebar. */
+    @media (min-width:820px) and (max-width:1020px){
+      body{padding:0}.app{margin:0;max-width:none;padding-bottom:108px}.nav{left:50%;top:auto;bottom:0;transform:translateX(-50%);width:min(560px,100%);height:calc(78px + env(safe-area-inset-bottom));padding:9px 17px calc(9px + env(safe-area-inset-bottom));border:0;border-top:1px solid #f4e4e7;border-radius:0;background:#fffefa;color:var(--ink);display:flex;flex-direction:row;align-items:center;justify-content:space-around;gap:0;box-shadow:0 -8px 26px rgba(65,33,52,.07)}
+      .nav-brand,.nav:after{display:none}.nav button{display:flex!important;min-height:0;height:auto;flex:1;align-items:center;justify-content:center;gap:3px;padding:7px 3px;color:#8b5360;font-size:11px}.nav button:before{display:none}.nav button.active{background:transparent;color:var(--pink)}.top{height:204px;padding:23px 28px}.hello,.couple{max-width:760px;margin-left:auto;margin-right:auto}.couple{padding-right:152px;margin-top:24px}.days{right:28px}.premium{right:28px;top:89px}.desktop-toolbar{padding:0 28px}.workspace-label{min-width:130px}main{padding:12px 28px 70px}.tools-panel{left:50%;width:min(560px,100%)}.tools-fab{right:22px;bottom:104px}
+    }
     @media (prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
   </style>
   <script>
